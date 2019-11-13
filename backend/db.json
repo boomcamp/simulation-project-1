@@ -1,0 +1,284 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "username": "dev-amor",
+      "password": "12345"
+    },
+    {
+      "id": 1,
+      "username": "dev-aquino",
+      "password": "12345"
+    },
+    {
+      "id": 2,
+      "username": "dev-astillero",
+      "password": "12345"
+    },
+    {
+      "id": 3,
+      "username": "dev-atento",
+      "password": "12345"
+    },
+    {
+      "id": 4,
+      "username": "dev-azores",
+      "password": "12345"
+    },
+    {
+      "id": 5,
+      "username": "dev-balbedina",
+      "password": "12345"
+    },
+    {
+      "id": 6,
+      "username": "dev-bandagosa",
+      "password": "12345"
+    },
+    {
+      "id": 7,
+      "username": "dev-camba",
+      "password": "12345"
+    },
+    {
+      "id": 8,
+      "username": "dev-danas",
+      "password": "12345"
+    },
+    {
+      "id": 9,
+      "username": "dev-delosreyes",
+      "password": "12345"
+    },
+    {
+      "id": 10,
+      "username": "dev-dulva",
+      "password": "12345"
+    },
+    {
+      "id": 11,
+      "username": "dev-frecia",
+      "password": "12345"
+    },
+    {
+      "id": 12,
+      "username": "dev-ifurung",
+      "password": "12345"
+    },
+    {
+      "id": 13,
+      "username": "dev-ludovice",
+      "password": "12345"
+    },
+    {
+      "id": 14,
+      "username": "dev-marbella",
+      "password": "12345"
+    },
+    {
+      "id": 15,
+      "username": "dev-medes",
+      "password": "12345"
+    },
+    {
+      "id": 16,
+      "username": "dev-menor",
+      "password": "12345"
+    },
+    {
+      "id": 17,
+      "username": "dev-mirabete",
+      "password": "12345"
+    },
+    {
+      "id": 18,
+      "username": "dev-molleno",
+      "password": "12345"
+    },
+    {
+      "id": 19,
+      "username": "dev-norte",
+      "password": "12345"
+    },
+    {
+      "id": 20,
+      "username": "dev-restum",
+      "password": "12345"
+    },
+    {
+      "id": 21,
+      "username": "dev-raquion",
+      "password": "12345"
+    },
+    {
+      "id": 22,
+      "username": "dev-serra",
+      "password": "12345"
+    }
+  ],
+
+
+  "usersList": [
+    {
+      "id": 0,
+      "username": "dev-amor",
+      "firstname": "Clark",
+      "lastname": "Amor",
+      "status": false
+    },
+    {
+      "id": 1,
+      "username": "dev-aquino",
+      "firstname": "Gino",
+      "lastname": "Aquino",
+      "status": false
+    },
+    {
+      "id": 2,
+      "username": "dev-astillero",
+      "firstname": "Jerommel",
+      "lastname": "Astillero",
+      "status": false
+    },
+    {
+      "id": 3,
+      "username": "dev-atento",
+      "firstname": "Eric",
+      "lastname": "Atento",
+      "status": false
+    },
+    {
+      "id": 4,
+      "username": "dev-azores",
+      "firstname": "Joseph",
+      "lastname": "Azores",
+      "status": false
+    },
+    {
+      "id": 5,
+      "username": "dev-balbedina",
+      "firstname": "Jake",
+      "lastname": "Balbedina",
+      "status": false
+    },
+    {
+      "id": 6,
+      "username": "dev-bandagosa",
+      "firstname": "Joven",
+      "lastname": "Bandagosa",
+      "status": false
+    },
+    {
+      "id": 7,
+      "username": "dev-camba",
+      "firstname": "Zion",
+      "lastname": "Camba",
+      "status": false
+    },
+    {
+      "id": 8,
+      "username": "dev-danas",
+      "firstname": "Delfin",
+      "lastname": "Danas",
+      "status": false
+    },
+    {
+      "id": 9,
+      "username": "dev-delosreyes",
+      "firstname": "Hamlet",
+      "lastname": "Delosreyes",
+      "status": false
+    },
+    {
+      "id": 10,
+      "username": "dev-dulva",
+      "firstname": "Vanessa",
+      "lastname": "Dulva",
+      "status": false
+    },
+    {
+      "id": 11,
+      "username": "dev-frecia",
+      "firstname": "Christian",
+      "lastname": "Frecia",
+      "status": false
+    },
+    {
+      "id": 12,
+      "username": "dev-ifurung",
+      "firstname": "Francisco",
+      "lastname": "Ifurung",
+      "status": false
+    },
+    {
+      "id": 13,
+      "username": "dev-ludovice",
+      "firstname": "Vince",
+      "lastname": "Ludovice",
+      "status": false
+    },
+    {
+      "id": 14,
+      "username": "dev-marbella",
+      "firstname": "Martha",
+      "lastname": "Marbella",
+      "status": false
+    },
+    {
+      "id": 15,
+      "username": "dev-medes",
+      "firstname": "Mark",
+      "lastname": "Medes",
+      "status": false
+    },
+    {
+      "id": 16,
+      "username": "dev-menor",
+      "firstname": "Jaymard",
+      "lastname": "Menor",
+      "status": false
+    },
+    {
+      "id": 17,
+      "username": "dev-mirabete",
+      "firstname": "Lyza",
+      "lastname": "Mirabete",
+      "status": false
+    },
+    {
+      "id": 18,
+      "username": "dev-molleno",
+      "firstname": "Jeffrey",
+      "lastname": "Molleno",
+      "status": false
+    },
+    {
+      "id": 19,
+      "username": "dev-norte",
+      "firstname": "Marcial",
+      "lastname": "Norte",
+      "status": false
+    },
+    {
+      "id": 20,
+      "username": "dev-restum",
+      "firstname": "Noe",
+      "lastname": "Restum",
+      "status": false
+    },
+    {
+      "id": 21,
+      "username": "dev-raquion",
+      "firstname": "Raphael",
+      "lastname": "Raquion",
+      "status": false
+    },
+    {
+      "id": 22,
+      "username": "dev-serra",
+      "firstname": "Vincent",
+      "lastname": "Serra",
+      "status": false
+    }
+  ]
+}

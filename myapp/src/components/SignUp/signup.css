@@ -1,0 +1,12 @@
+.signUpcss{
+  margin-top:5% ;
+  margin-left:35%;
+  width: 30%;
+  height: 75vh;
+  padding-left:1%;
+  padding-top: 3%;
+  border-style: outset;
+  align-content: center;
+  background-color: whitesmoke;
+  border-radius:10px 
+}

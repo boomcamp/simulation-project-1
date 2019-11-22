@@ -1,0 +1,65 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { MDBRow, MDBCard, MDBCardBody, MDBBtn, MDBInput } from "mdbreact";
+import styled from "styled-components";
+import "../../../node_modules/react-toastify/dist/ReactToastify.css";
+
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+class Login extends React.Component {
+  render() {
+    const { handleLogin, handleOnChange } = this.props;
+    return (
+      <Div>
+        <MDBCard style={{ marginTop: "180px", width: "500px" }}>
+          <div className="header pt-3 grey lighten-2">
+            <MDBRow className="d-flex justify-content-start">
+              <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">Log in</h3>
+            </MDBRow>
+          </div>
+          <MDBCardBody className="mx-4 mt-4">
+            <MDBInput
+              icon="user"
+              label="Your email"
+              group
+              type="text"
+              onChange={e => handleOnChange(e.target.value, "email")}
+            />
+            <MDBInput
+              icon="lock"
+              label="Your password"
+              group
+              type="password"
+              onChange={e => handleOnChange(e.target.value, "pass")}
+            />
+            <div className="text-center mb-4 mt-5">
+              <MDBBtn
+                color="danger"
+                type="button"
+                className="btn-block z-depth-2"
+                onClick={() => handleLogin()}
+              >
+                Log in
+              </MDBBtn>
+            </div>
+            <Link to="/register">
+              <p className="font-small grey-text d-flex justify-content-center">
+                Don't have an account?{" "}
+                <span className="dark-grey-text font-weight-bold ml-1">
+                  Sign up
+                </span>
+              </p>
+            </Link>
+          </MDBCardBody>
+        </MDBCard>
+      </Div>
+    );
+  }
+}
+
+export default Login;

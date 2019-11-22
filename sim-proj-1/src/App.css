@@ -1,0 +1,88 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+} */
+
+.error{
+  color:red;
+  margin: 0;
+}
+
+.active{
+  height: 10px;
+  width: 10px;
+  background-color:yellowgreen;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.inactive{
+  height: 10px;
+  width: 10px;
+  background-color:#bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.header{
+  color: white;
+  padding: 20px 100px;
+  background-color: darkgrey;
+  box-shadow: 0px 6px 11px 0px rgba(0,0,0,0.75);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.drpbtn {
+  background-color: transparent;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.drpcontent {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.drpcontent a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.drpcontent a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .drpcontent { display: block; }

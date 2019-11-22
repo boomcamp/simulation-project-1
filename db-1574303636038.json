@@ -1,0 +1,504 @@
+{
+  "users": [
+    {
+      "email": "Dahlia52@hotmail.com",
+      "password": "$2a$10$6c7MlD4pV/QImljN8CQbQOpAJeHD0XX0hvtPJXjja8hlRq9Fuzi06",
+      "plainPassword": "O78uS4HQlLjzVnZ",
+      "username": "Joshuah.Schiller",
+      "firstName": "Monica",
+      "lastName": "Auer",
+      "active": false,
+      "id": 1
+    },
+    {
+      "email": "Amber_Schowalter14@hotmail.com",
+      "password": "$2a$10$OD4ICDm8uFsM/9lTZZx4suLha6s7TasUlIEkShfWFOB81qXVCvnH2",
+      "plainPassword": "gjgz8o8Xo1U8wG_",
+      "username": "Estella_Bauch56",
+      "firstName": "Karen",
+      "lastName": "Von",
+      "active": true,
+      "id": 2
+    },
+    {
+      "email": "Kelton_Tillman18@gmail.com",
+      "password": "$2a$10$2/ypQPdiD6XXIJoObFakRuP1QNeSgK9pWqc0DVINwC7URVsoxK4Vm",
+      "plainPassword": "SaMh783asaRZjDf",
+      "username": "Raheem94",
+      "firstName": "Linda",
+      "lastName": "McGlynn",
+      "active": false,
+      "id": 3
+    },
+    {
+      "email": "Keith.Jones@yahoo.com",
+      "password": "$2a$10$l0UwXsNCYWOeOrDOT7s43O6YCSbt4JTJSoTCf3VCdc2kUjYwZizA.",
+      "plainPassword": "r2fAlniI4vHhBAA",
+      "username": "Ray_Blick",
+      "firstName": "Harrison",
+      "lastName": "Mann",
+      "active": false,
+      "id": 4
+    },
+    {
+      "email": "Manley.Heidenreich75@hotmail.com",
+      "password": "$2a$10$1fgfEU.Plmg9oSWvvMjBrODsc8r0T2XJjm.zukzVLkGAT7n8kKqVm",
+      "plainPassword": "oJaJ1vKwjvu8kLE",
+      "username": "Floyd.Mitchell",
+      "firstName": "Veronica",
+      "lastName": "Jones",
+      "active": true,
+      "id": 5
+    },
+    {
+      "email": "Loyce_Larson60@gmail.com",
+      "password": "$2a$10$LVSmIhzdD5oRM/gQ9THBpez3Ymu6sAWc6QBdZBJ0.N32g.e7FatVS",
+      "plainPassword": "qU5hPKgFhCxdIJU",
+      "username": "Taurean68",
+      "firstName": "Zena",
+      "lastName": "Beer",
+      "active": true,
+      "id": 6
+    },
+    {
+      "email": "Sigmund.Weber37@hotmail.com",
+      "password": "$2a$10$s7.GLGlDjwwYf79np.nLKuo08pV3H.e3jT6GKfKmgsnzoC2dsH6GW",
+      "plainPassword": "U9pgqBAgyJ0SRVN",
+      "username": "Ally.Mills",
+      "firstName": "Kassandra",
+      "lastName": "Strosin",
+      "active": false,
+      "id": 7
+    },
+    {
+      "email": "Drake_Moore@yahoo.com",
+      "password": "$2a$10$MgSCzU26IJw0Vzzfb9fphuaJXNOIXgUkFb7MUcILDXQZ4e9r7sVE.",
+      "plainPassword": "G8a_XYdx9j7xGVH",
+      "username": "Orie68",
+      "firstName": "Clay",
+      "lastName": "Blanda",
+      "active": true,
+      "id": 8
+    },
+    {
+      "email": "Shanelle_Sawayn46@hotmail.com",
+      "password": "$2a$10$I4tUivj5SWQ20xRPSXJyYeK5KYTAz/9YL8alV7JJGBbo7oJdG4d.2",
+      "plainPassword": "VEnhAGXb3SL5i7F",
+      "username": "Alysha.Goodwin19",
+      "firstName": "Wilhelmine",
+      "lastName": "Hoeger",
+      "active": true,
+      "id": 9
+    },
+    {
+      "email": "Lesly48@hotmail.com",
+      "password": "$2a$10$9Z904aBuHbqiMAQZNvK1jO74cbN0M593DRmgBBjFE7QNqUh.nfwz.",
+      "plainPassword": "bdA5zKOv8xERx7J",
+      "username": "Avery97",
+      "firstName": "Hilma",
+      "lastName": "Batz",
+      "active": true,
+      "id": 10
+    },
+    {
+      "email": "Jeremy.Wolff14@hotmail.com",
+      "password": "$2a$10$TAJ6FNmJaBdEkUYTtOrQW.93alrG81FUND1adaHOUxktKxZrWpxt2",
+      "plainPassword": "t7sWxVX6X2vpdVQ",
+      "username": "Antonetta.Boyer",
+      "firstName": "Travis",
+      "lastName": "Cremin",
+      "active": false,
+      "id": 11
+    },
+    {
+      "email": "Shaniya_Steuber0@hotmail.com",
+      "password": "$2a$10$7h12vWqoAsxk0wEti.KJxuv7cxlGNSUPP63c/IwZ5R5PDKkOOy.F.",
+      "plainPassword": "6G7QHzTJXtFjx0M",
+      "username": "Athena.Towne77",
+      "firstName": "Blake",
+      "lastName": "Frami",
+      "active": false,
+      "id": 12
+    },
+    {
+      "email": "Alba80@hotmail.com",
+      "password": "$2a$10$lMzkBs.smjjdsaY4Ih40reIWUpXpHjT32tX6ErAVCh0yQJ8.4Hu.O",
+      "plainPassword": "uSKULox4Vuioset",
+      "username": "Anjali77",
+      "firstName": "Terry",
+      "lastName": "Kuhic",
+      "active": false,
+      "id": 13
+    },
+    {
+      "email": "Kacey_Jakubowski@yahoo.com",
+      "password": "$2a$10$XPFYZn9uctNFa3bsh5hj5uiYw6WofXNHBbGnErW5KrnzpG4.VTT6W",
+      "plainPassword": "fitFPjGByWB_aRx",
+      "username": "Theo59",
+      "firstName": "Johnny",
+      "lastName": "Schuster",
+      "active": false,
+      "id": 14
+    },
+    {
+      "email": "Casey5@yahoo.com",
+      "password": "$2a$10$aT/MLCnUo0.6.NpCq5qWsuYh58jzbt0C3fWzQ3Q6I7x/4.hOGSdPS",
+      "plainPassword": "WSkU2UBlWJK6Jnm",
+      "username": "Maurice.Upton",
+      "firstName": "Ila",
+      "lastName": "Emard",
+      "active": false,
+      "id": 15
+    },
+    {
+      "email": "Uriah68@yahoo.com",
+      "password": "$2a$10$zn.FBvViZAQ5GIlRipkOBOZbMsdYwflwohIVJDE1pgEKEnUxTESIO",
+      "plainPassword": "vXy9iPAVQk3nuEi",
+      "username": "Matilda_Lockman",
+      "firstName": "Justina",
+      "lastName": "Predovic",
+      "active": true,
+      "id": 16
+    },
+    {
+      "email": "Matteo_Gutmann@hotmail.com",
+      "password": "$2a$10$M90RORP89Q5vc9.6afCAM.f3UkG69AXdO0bUoXlk.J2L/7Q.4oUgO",
+      "plainPassword": "rrGn6UnTpWvzhT5",
+      "username": "Laisha93",
+      "firstName": "Pedro",
+      "lastName": "Kutch",
+      "active": false,
+      "id": 17
+    },
+    {
+      "email": "Jordi_Senger@hotmail.com",
+      "password": "$2a$10$j.wZg2uXewBTJjzSxCj.3.v8W0QU1tETMh62aLovueNxWFS7.4TTG",
+      "plainPassword": "5ON625_wKg0qp_S",
+      "username": "Danielle.Satterfield90",
+      "firstName": "Gerardo",
+      "lastName": "Haley",
+      "active": false,
+      "id": 18
+    },
+    {
+      "email": "Matilde.Bernier96@yahoo.com",
+      "password": "$2a$10$sT657jfO7PtbbfXD4xt./OzbUxb0lwQQsE9w7GnSFicBNx0F6JrQS",
+      "plainPassword": "6pJ1zIHqCtx0UVZ",
+      "username": "Verlie66",
+      "firstName": "Shirley",
+      "lastName": "Kunde",
+      "active": false,
+      "id": 19
+    },
+    {
+      "email": "Delores.Bahringer7@hotmail.com",
+      "password": "$2a$10$3pCvDo2Geti/pzMqw1oTpODqzy/SDEJ/7hXwQ42VpUVfpcdoqRxCi",
+      "plainPassword": "NepBrRMOKDoGAlW",
+      "username": "Roxanne37",
+      "firstName": "Weldon",
+      "lastName": "Rosenbaum",
+      "active": true,
+      "id": 20
+    },
+    {
+      "email": "Noe.Stiedemann@hotmail.com",
+      "password": "$2a$10$VjuEmtUEJ2qPPIBvFST50eIju5dAD.DYiZCKVQpKrMRWy3xJ/pcTi",
+      "plainPassword": "sf4NUuFvWCMA0yp",
+      "username": "Franz_Little30",
+      "firstName": "Mariane",
+      "lastName": "Witting",
+      "active": true,
+      "id": 21
+    },
+    {
+      "email": "Devin_Howe@gmail.com",
+      "password": "$2a$10$TD/PNXCpEGBIJBXXh26qeOtYLVUWVpSVL4hx6UKr/NUYB/4UKFROG",
+      "plainPassword": "3iWrPvxIYwOWxoQ",
+      "username": "Santino99",
+      "firstName": "Rahsaan",
+      "lastName": "Auer",
+      "active": true,
+      "id": 22
+    },
+    {
+      "email": "Shanie.Anderson8@hotmail.com",
+      "password": "$2a$10$n32Rizvp2W7Yo94wpMZfYOBtHVWCbkfmdFRyfWMAh5WRelG.ZxOo.",
+      "plainPassword": "ADchuieylv7DTGy",
+      "username": "Ethelyn.Predovic24",
+      "firstName": "Merritt",
+      "lastName": "Zulauf",
+      "active": true,
+      "id": 23
+    },
+    {
+      "email": "Mireille86@hotmail.com",
+      "password": "$2a$10$llttEnZREaKL6IXf7CtQKewk0yANXiTjE0VdBzioJynHJ/Qy0aFBq",
+      "plainPassword": "a0CUEJOXNM2oe_i",
+      "username": "Delphine.Pacocha78",
+      "firstName": "Claud",
+      "lastName": "O'Hara",
+      "active": false,
+      "id": 24
+    },
+    {
+      "email": "Georgette_Homenick15@gmail.com",
+      "password": "$2a$10$WPv7.gIkTu4qG7HWCbInzeCDwtBu4P9HBfPkUWNGRzhaTpi1.A6vm",
+      "plainPassword": "nEnYos0aMAX3sZJ",
+      "username": "Elsie59",
+      "firstName": "Westley",
+      "lastName": "Rutherford",
+      "active": true,
+      "id": 25
+    },
+    {
+      "email": "Mackenzie_Hartmann@gmail.com",
+      "password": "$2a$10$yPkKab7zA7WJvYSpMAmXnurBQ06xZN6RQKsJrSzol1GzXiKyYbnua",
+      "plainPassword": "DrFZidsZ9vcgdWs",
+      "username": "Magnus.Mitchell",
+      "firstName": "Myrtie",
+      "lastName": "Lind",
+      "active": true,
+      "id": 26
+    },
+    {
+      "email": "Rhiannon_Kub61@gmail.com",
+      "password": "$2a$10$TfnAsrneoNaXnR0IQMY9ZuIwajmX23AnK5U0d3O9.z/8rS1kFPbHW",
+      "plainPassword": "q9eu1_Wka0kQKj6",
+      "username": "Jocelyn33",
+      "firstName": "Zachary",
+      "lastName": "Bartell",
+      "active": false,
+      "id": 27
+    },
+    {
+      "email": "Myrna.Emmerich29@yahoo.com",
+      "password": "$2a$10$ljwmtsbzp.dsDGNOw.PAFeK.qzDUM61UHDUEpIZh3KKVhhpvUYgm2",
+      "plainPassword": "_3ivGz4QA8qDY6J",
+      "username": "Levi_Kulas70",
+      "firstName": "Geoffrey",
+      "lastName": "Dietrich",
+      "active": false,
+      "id": 28
+    },
+    {
+      "email": "Jimmie_Rutherford90@hotmail.com",
+      "password": "$2a$10$w66Plbjv5Y9c9V5yVd6M4O39FXn17pqenLAhhNYgjjpn9F2w3u1JS",
+      "plainPassword": "hSRNQ_trpvPgGYC",
+      "username": "Ryleigh22",
+      "firstName": "Emil",
+      "lastName": "Ankunding",
+      "active": true,
+      "id": 29
+    },
+    {
+      "email": "Sibyl_Wolff@gmail.com",
+      "password": "$2a$10$jeTkmNEnh01q0E9lTfOH..vruCKhQZFYyDz4FtqWXqBNWdiZIZkZy",
+      "plainPassword": "YDyJXsNZ2jsgiJT",
+      "username": "Alex87",
+      "firstName": "Emmitt",
+      "lastName": "Effertz",
+      "active": false,
+      "id": 30
+    },
+    {
+      "email": "Rae_Gibson@hotmail.com",
+      "password": "$2a$10$LlbZQOOqR7rmEMJxuljr1.fMMHeNj4NTSdqUiSQJdb2TaPfG6IGbi",
+      "plainPassword": "OhRCp1wNjOLzTF_",
+      "username": "Kaci.Crooks7",
+      "firstName": "Hailey",
+      "lastName": "Klein",
+      "active": true,
+      "id": 31
+    },
+    {
+      "email": "Yolanda23@yahoo.com",
+      "password": "$2a$10$Em5NlfCt1aTx1Uf9dh9UuuHZ7vQf46uivJ221RuL1bpYnZcylcJf6",
+      "plainPassword": "LXCfo6m4zT2MXVB",
+      "username": "Kasey_Trantow",
+      "firstName": "Kelli",
+      "lastName": "Hoeger",
+      "active": false,
+      "id": 32
+    },
+    {
+      "email": "Howell_Waters@hotmail.com",
+      "password": "$2a$10$q9Bmk3q/DIo75WpL..3WBuMYAsckG.goj9t.l.1GTbJ0rS/dqA70y",
+      "plainPassword": "rKGBZIJNi5ekSlP",
+      "username": "Jewell_Ratke62",
+      "firstName": "Florencio",
+      "lastName": "Bernier",
+      "active": false,
+      "id": 33
+    },
+    {
+      "email": "Jackie97@gmail.com",
+      "password": "$2a$10$bFHNk5jk4h/9KYYLkuLIZuuY/kNXi/r5oTuwwFQz859UTwXen43Sa",
+      "plainPassword": "esjt7v62nn68Kq1",
+      "username": "Chester70",
+      "firstName": "Keaton",
+      "lastName": "Sipes",
+      "active": true,
+      "id": 34
+    },
+    {
+      "email": "Mckayla.Hintz@yahoo.com",
+      "password": "$2a$10$zcFWoH8z/qWYwJ/9IQxNeulMVs5c65ur0yCD83WMuN6J/OmcqoqR6",
+      "plainPassword": "EAowa3w7c2Cjo35",
+      "username": "Janie70",
+      "firstName": "Brooke",
+      "lastName": "Hilll",
+      "active": true,
+      "id": 35
+    },
+    {
+      "email": "Earnest_Watsica86@hotmail.com",
+      "password": "$2a$10$V7y4RuXgL7UTcehERHyI.ee0DASTWWXi0.UhwbO6unyV5KkH09E6C",
+      "plainPassword": "mFJ8JmKsTAWactN",
+      "username": "Arthur_Dietrich95",
+      "firstName": "Sandrine",
+      "lastName": "Mohr",
+      "active": true,
+      "id": 36
+    },
+    {
+      "email": "Devonte9@gmail.com",
+      "password": "$2a$10$wGo/ItWqAZOCCcQlMIlt9ewGpVFoxM8rCkn8ncDIKzCfHdb8h3dXe",
+      "plainPassword": "ufCssXSn8LxdPZf",
+      "username": "Audrey.Schoen",
+      "firstName": "Johnny",
+      "lastName": "Durgan",
+      "active": true,
+      "id": 37
+    },
+    {
+      "email": "Odie18@hotmail.com",
+      "password": "$2a$10$vXdDD1dxJAhU61xNAEPUoe17EjduoHuE5N3EWh4FWKKUwAHoXKjVu",
+      "plainPassword": "NiJtmvNA3Av_crR",
+      "username": "Lillian_Bradtke81",
+      "firstName": "Raul",
+      "lastName": "Braun",
+      "active": true,
+      "id": 38
+    },
+    {
+      "email": "Otho_Torp@hotmail.com",
+      "password": "$2a$10$qngOEIV/zEXYXaf2kkAz/erXQT56Sk86pyuba2aJEn1eqENcrR1l.",
+      "plainPassword": "vmmrBpaG4tJ0Med",
+      "username": "Neal.Stokes31",
+      "firstName": "Lorenz",
+      "lastName": "Hodkiewicz",
+      "active": false,
+      "id": 39
+    },
+    {
+      "email": "Rick.Satterfield@gmail.com",
+      "password": "$2a$10$gq.vZQFzyBZMGOZlkH7x7e7qJhd91Nao/pUnH8ZWx0qAH/8bOceeq",
+      "plainPassword": "q92EKVnhcKlLWRu",
+      "username": "Hester.Dare",
+      "firstName": "Anastacio",
+      "lastName": "Heidenreich",
+      "active": false,
+      "id": 40
+    },
+    {
+      "email": "Darwin_Davis@gmail.com",
+      "password": "$2a$10$ebDyvFk4cQ6IVvB3NoUzDOx1buUxDEDS2jrSzvkflj.IGYB7PzKeW",
+      "plainPassword": "jUHoJooNCXNja5V",
+      "username": "Keyshawn.Mante",
+      "firstName": "Patrick",
+      "lastName": "Bayer",
+      "active": true,
+      "id": 41
+    },
+    {
+      "email": "Francisco_Lind@gmail.com",
+      "password": "$2a$10$SwH5/okV40vCukw96zmge.HsrXIWUaAxKWsaOauE7TC9v5H1sg9wy",
+      "plainPassword": "LP7nB5n7KCpaOqQ",
+      "username": "Price.Dietrich",
+      "firstName": "Destin",
+      "lastName": "Veum",
+      "active": false,
+      "id": 42
+    },
+    {
+      "email": "Joey58@hotmail.com",
+      "password": "$2a$10$I.3BTVb.FvrSe6a9gtmGiuI4kloK4VWVVFB6bi99KNqYtCmXejZZi",
+      "plainPassword": "DAfcga5yaEsIGsO",
+      "username": "Donny.Halvorson",
+      "firstName": "Kenyon",
+      "lastName": "Kozey",
+      "active": false,
+      "id": 43
+    },
+    {
+      "email": "Delaney25@gmail.com",
+      "password": "$2a$10$vlmK4aU4MwNMG2pC4Kue6eoCYgUqGYMd10a0SuAiimdTHZd/3w7Ia",
+      "plainPassword": "gjBK2emjG_4RBR2",
+      "username": "Reese99",
+      "firstName": "Olga",
+      "lastName": "Shields",
+      "active": true,
+      "id": 44
+    },
+    {
+      "email": "Janis.Greenholt21@hotmail.com",
+      "password": "$2a$10$demTZnvHSTNoBE6MkbCi4eU8kEigcc1BVFbw4jnAoFaKLsbWe53JC",
+      "plainPassword": "Ce_qcYCsJRnKDuS",
+      "username": "Evan.Nolan",
+      "firstName": "Arvid",
+      "lastName": "Kirlin",
+      "active": true,
+      "id": 45
+    },
+    {
+      "email": "Kaden8@gmail.com",
+      "password": "$2a$10$fTNCPd5GQZvMFdlG8vDutu665t.E4S9oJvzA6MiP46iBY7QPx1arS",
+      "plainPassword": "HnVdRov5iKLJQWL",
+      "username": "Shakira_Bogan17",
+      "firstName": "Kenneth",
+      "lastName": "Schaefer",
+      "active": false,
+      "id": 46
+    },
+    {
+      "email": "Stefanie14@hotmail.com",
+      "password": "$2a$10$suYrwfjKwQDeqiA5F2rd8.Wy5Ju7a46smvONnNNjOFjX2CWfDhqvm",
+      "plainPassword": "_2J9kukGcDPMqCs",
+      "username": "Carissa.Skiles99",
+      "firstName": "Abe",
+      "lastName": "Bosco",
+      "active": true,
+      "id": 47
+    },
+    {
+      "email": "Heath_Frami89@gmail.com",
+      "password": "$2a$10$B.iE3.lPL7hGWHbpGuO2QesGlhu7pIEZCv6r39Hyf4mn2gEMhgzBa",
+      "plainPassword": "K5Kat5EeASLTD6U",
+      "username": "Julien_Bailey",
+      "firstName": "Leo",
+      "lastName": "Veum",
+      "active": false,
+      "id": 48
+    },
+    {
+      "email": "Jessyca.Schultz@gmail.com",
+      "password": "$2a$10$MMpQIa3Vj4BvQAkJMIUrWuB46FcH/I2UK4L1pzieFVSjoYa3Qzt0O",
+      "plainPassword": "V9wbcgJ_Q4CswnM",
+      "username": "Luis.Hettinger",
+      "firstName": "Jeremie",
+      "lastName": "Conroy",
+      "active": true,
+      "id": 49
+    },
+    {
+      "email": "Kurtis45@gmail.com",
+      "password": "$2a$10$FAXUFhfm.C1pwB3bVzOOq.luEXKJSZaL9Qzy292O4ENtRlKsuTvWi",
+      "plainPassword": "xNQE0p8Dr8eB4HZ",
+      "username": "Michaela_Von",
+      "firstName": "Jamal",
+      "lastName": "Torphy",
+      "active": false,
+      "id": 50
+    }
+  ]
+}

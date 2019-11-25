@@ -4,6 +4,8 @@ import { HashRouter } from "react-router-dom";
 import Routes from "./components/Routes/Routes";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default class App extends React.Component {
   constructor() {
@@ -16,7 +18,13 @@ export default class App extends React.Component {
       username: "",
       active: true,
       token: null,
-      users: []
+      users: [],
+      confirmed: false,
+      redirect: false,
+      error: false,
+      errMsg: "",
+      errorEmail: false,
+      errorEmailMsg: ""
     };
   }
   componentDidMount() {
@@ -25,25 +33,59 @@ export default class App extends React.Component {
     });
   }
   handleOnChange = (text, val) => {
-    val === "email"
-      ? this.setState({
-          email: text
-        })
-      : val === "password"
-      ? this.setState({
-          password: text
-        })
-      : val === "firstname"
-      ? this.setState({
-          firstname: text
-        })
-      : val === "lastname"
-      ? this.setState({
-          lastname: text
-        })
-      : this.setState({
-          username: text
-        });
+    if (val === "email") {
+      this.setState({
+        email: text
+      });
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      re.test(text.toLowerCase())
+        ? this.setState({ errorEmail: false, errorEmailMsg: "" })
+        : this.setState({
+            errorEmail: true,
+            errorEmailMsg: "Should be a valid Email"
+          });
+    } else if (val === "password") {
+      this.setState({
+        password: text
+      });
+      const a = text.match(/[A-Z]/g);
+      const b = text.match(/[0-9]/g);
+      !a
+        ? this.setState({
+            error: true,
+            errMsg: "Password should have atleast an uppercase letter"
+          })
+        : !b
+        ? this.setState({
+            error: true,
+            errMsg: "Password should have atleast a number"
+          })
+        : text.length < 8
+        ? this.setState({
+            error: true,
+            errMsg: "Password is too short"
+          })
+        : this.setState({
+            error: false,
+            errMsg: ""
+          });
+    } else if (val === "firstname") {
+      this.setState({
+        firstname: text
+      });
+    } else if (val === "lastname") {
+      this.setState({
+        lastname: text
+      });
+    } else if (val === "username") {
+      this.setState({
+        username: text
+      });
+    } else if (this.state.password === text && this.state.password !== "") {
+      this.setState({ confirmed: false });
+    } else {
+      this.setState({ confirmed: true });
+    }
   };
   handleLogin = () => {
     const url = "http://localhost:3000/login";
@@ -58,41 +100,72 @@ export default class App extends React.Component {
         this.setState({
           token: res.data.accessToken
         });
+        toast.info("Welcome!😁", {
+          position: toast.POSITION.TOP_CENTER
+        });
       })
-      .catch(() => alert("Invalid Email or Password!!!"));
+      .catch(() => toast.error("User not found!😢"));
   };
   handleSignUp = () => {
-    const url = "http://localhost:3000/register";
-    axios
-      .post(url, {
-        email: this.state.email,
-        password: this.state.password,
-        plainPassword: this.state.password,
-        username: this.state.username,
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        lastname: this.state.active
-      })
-      .then(
-        alert("Successfully created! Go to Login Page and Login your account!")
-      )
-      .catch(alert("Please fill out the required fields"));
+    if (!this.state.confirmed) {
+      const url = "http://localhost:3000/register";
+      axios
+        .post(url, {
+          email: this.state.email,
+          password: this.state.password,
+          plainPassword: this.state.password,
+          username: this.state.username,
+          firstName: this.state.firstname,
+          lastName: this.state.lastname,
+          active: this.state.active
+        })
+        .then(() => {
+          this.setState({
+            redirect: true
+          });
+          toast.success("Account successfully created!😁", {
+            position: toast.POSITION.TOP_CENTER
+          });
+        })
+        .catch(() =>
+          toast.error("Something went wrong.😢", {
+            position: toast.POSITION.TOP_CENTER
+          })
+        );
+    }
   };
   handleLogOut = () => {
     this.setState({
       token: null
     });
     localStorage.clear();
+    toast.info("Bye bye! 👋😢", {
+      position: toast.POSITION.TOP_CENTER
+    });
+  };
+  handleRedirect = () => {
+    this.setState({
+      redirect: false
+    });
   };
   render() {
     return (
       <HashRouter>
+        <ToastContainer autoClose={10000} />
         <Routes
           token={this.state.token}
           handleOnChange={this.handleOnChange}
           handleLogin={this.handleLogin}
           handleSignUp={this.handleSignUp}
           handleLogOut={this.handleLogOut}
+          confirmed={this.state.confirmed}
+          handleConfirmPassword={this.handleConfirmPassword}
+          redirect={this.state.redirect}
+          handleRedirect={this.handleRedirect}
+          errMsg={this.state.errMsg}
+          error={this.state.error}
+          errorEmail={this.state.errorEmail}
+          errorEmailMsg={this.state.errorEmailMsg}
         />
       </HashRouter>
     );

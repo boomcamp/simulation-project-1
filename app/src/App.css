@@ -31,3 +31,6 @@ body {
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
 }
+.MuiTableRow-root:hover {
+  background: #dedede !important;
+}

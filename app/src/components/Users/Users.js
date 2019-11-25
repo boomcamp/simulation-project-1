@@ -8,7 +8,8 @@ import { FaUserCircle } from "react-icons/fa";
 import MaterialTable from "material-table";
 import { Cont2 } from "../Style/Style";
 import axios from "axios";
-import DataTable from "react-data-table-component";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Div = styled.div`
   display: flex;
@@ -46,7 +47,8 @@ export default class Users extends Component {
         },
         {
           title: "Active",
-          field: "active"
+          field: "active",
+          lookup: { true: "Active", false: "Inactive" }
         }
       ],
       data: []
@@ -68,7 +70,6 @@ export default class Users extends Component {
   }
   render() {
     const { handleLogOut } = this.props;
-    console.log(this.state.data);
     return (
       <Div>
         <Navbar bg="light" expand="lg" fixed="top">
@@ -99,6 +100,10 @@ export default class Users extends Component {
         <Cont2>
           <MaterialTable
             title="Editable Example"
+            options={{
+              pageSizeOptions: [10, 15, 20],
+              pageSize: 10
+            }}
             columns={this.state.columns}
             data={this.state.data}
             editable={{
@@ -113,18 +118,47 @@ export default class Users extends Component {
                         return { ...prevState, data };
                       });
                     }
-                  }, 600);
-                }),
-              onRowDelete: oldData =>
-                new Promise(resolve => {
-                  setTimeout(() => {
-                    resolve();
-                    this.setState(prevState => {
-                      const data = [...prevState.data];
-                      data.splice(data.indexOf(oldData), 1);
-                      return { ...prevState, data };
+                  }, 200);
+                  axios
+                    .patch(
+                      `http://localhost:3000/users/${newData.id}`,
+                      {
+                        email: newData.email,
+                        username: newData.username,
+                        firstName: newData.firstName,
+                        lastName: newData.lastName,
+                        active: newData.active
+                      },
+                      {
+                        headers: { Authorization: `Bearer ${this.props.token}` }
+                      }
+                    )
+                    .then(() => {
+                      const obj1 = {
+                          email: newData.email,
+                          username: newData.username,
+                          firstName: newData.firstName,
+                          lastName: newData.lastName,
+                          active: newData.active
+                        },
+                        obj2 = {
+                          email: oldData.email,
+                          username: oldData.username,
+                          firstName: oldData.firstName,
+                          lastName: oldData.lastName,
+                          active: oldData.active
+                        };
+                      JSON.stringify(obj1) !== JSON.stringify(obj2)
+                        ? toast.info("Edit successful", {
+                            position: toast.POSITION.TOP_CENTER
+                          })
+                        : toast("No changes were made", {
+                            position: toast.POSITION.TOP_CENTER
+                          });
+                    })
+                    .catch(() => toast.error("Something went wrong!"), {
+                      position: toast.POSITION.TOP_CENTER
                     });
-                  }, 600);
                 })
             }}
           />

@@ -11,7 +11,15 @@ export default class Routes extends React.Component {
       handleOnChange,
       handleLogin,
       handleSignUp,
-      handleLogOut
+      handleLogOut,
+      confirmed,
+      handleConfirmPassword,
+      redirect,
+      errMsg,
+      error,
+      errorEmail,
+      errorEmailMsg,
+      handleRedirect
     } = this.props;
     return (
       <Switch>
@@ -22,6 +30,7 @@ export default class Routes extends React.Component {
               <Login
                 handleOnChange={handleOnChange}
                 handleLogin={handleLogin}
+                handleRedirect={handleRedirect}
               />
             ) : (
               <Users handleLogOut={handleLogOut} token={token} />
@@ -29,15 +38,25 @@ export default class Routes extends React.Component {
           }
           path="/"
         />
-        <Route
-          path="/register"
-          render={() => (
-            <Register
-              handleOnChange={handleOnChange}
-              handleSignUp={handleSignUp}
-            />
-          )}
-        />
+        {redirect ? (
+          <Redirect from="*" to="/" />
+        ) : (
+          <Route
+            path="/register"
+            render={() => (
+              <Register
+                handleOnChange={handleOnChange}
+                handleSignUp={handleSignUp}
+                confirmed={confirmed}
+                handleConfirmPassword={handleConfirmPassword}
+                errMsg={errMsg}
+                error={error}
+                errorEmail={errorEmail}
+                errorEmailMsg={errorEmailMsg}
+              />
+            )}
+          />
+        )}
       </Switch>
     );
   }

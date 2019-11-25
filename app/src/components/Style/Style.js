@@ -6,6 +6,9 @@ const Div = styled.div`
   justify-content: center;
   padding-top: 200px;
 `;
+const Div2 = styled.div`
+  padding: 0 0 10px 0;
+`;
 const Cont = styled.div`
   border-radius: 20px;
   padding: 30px 50px 60px 50px;
@@ -15,12 +18,10 @@ const Cont = styled.div`
   background: whitesmoke;
 `;
 const Cont2 = styled.div`
-  margin-top: 100px;
-  border-radius: 20px;
-  padding: 50px;
-  display: flex;
+  margin-top: 80px;
   flex-direction: column;
-  background: whitesmoke;
+  width: 100%;
+  padding: 20px;
 `;
 const Span = styled.span`
   font-size: 30px;
@@ -28,7 +29,7 @@ const Span = styled.span`
   padding: 20px 0 30px 0;
 `;
 const Span2 = styled.span`
-  padding: 5px 0 5px 0;
+  margin: 0px 0 20px 0;
 `;
 
-export { Div, Cont, Span, Span2, Cont2 };
+export { Div, Div2, Cont, Span, Span2, Cont2 };

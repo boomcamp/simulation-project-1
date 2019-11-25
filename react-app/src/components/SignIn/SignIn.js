@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -9,6 +9,8 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
+import AppBar from "../AppBar/AppBar";
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -47,15 +49,65 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
 
-  const [email, setemail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setemailError] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
+  const [Token, setToken] = useState("");
+
+  const handleEmail = e => {
+    setEmail(e.target.value);
+  };
+  const handlePassword = e => {
+    setPassword(e.target.value);
+  };
 
   function validate(e) {
+    // Login
+    axios
+      .post("http://localhost:3000/login", {
+        email: email,
+        password: password
+      })
+      .then(token => {
+        localStorage.setItem("Token", token.data.accessToken);
+        setToken(token.data.accessToken);
+        axios
+          .get(`http://localhost:3000/users?q=${email}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("Token")}`
+            }
+          })
+          .then(res => {
+            localStorage.setItem("Name", res.data[0].firstName);
+            {
+              Swal.fire({
+                icon: "success",
+                title: "Logged In Successfully!"
+              }).then(result => {
+                props.setRedirect(true);
+              });
+            }
+          })
+          .catch(e => {
+            Swal.fire({
+              icon: "error",
+              title: "Failed to Login"
+            });
+          });
+      })
+      .catch(e => {
+        Swal.fire({
+          icon: "error",
+          title: "Failed to Login",
+          text: "Please check your email and password"
+        });
+      });
+    // Login End
+
     if (email === "") {
       setemailError("This field is required");
     } else {
@@ -70,31 +122,17 @@ export default function SignIn() {
     password === ""
       ? setPasswordErr("This field is required")
       : setPasswordErr("");
-
-    // var token =
-    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imx5emFAYm9vb20uY2FtcCIsImlhdCI6MTU3NDQwMzIzNiwiZXhwIjoxNTc0NDA2ODM2LCJzdWIiOiI1NiJ9.5kM0ukebtcFsQAWfueZb54UDpitXdFWaVaHCET2TFiI";
-    // axios({
-    //   method: "get",
-    //   url: `http://localhost:3000/users`,
-    //   headers: {
-    //     Authorization: `Bearer ${token}`
-    //   }
-    // }).then(data => {
-    //   // setState({
-    //   //   data: data.data
-    //   // });
-    //   console.log(data);
-    // });
   }
   return (
     <React.Fragment>
+      <AppBar />
       <Container width="fixed" className={classes.container}>
         {" "}
         <AccountCircleIcon color="primary" className={classes.icon} />
-        <Typography className={classes.title}>Sign In</Typography>
+        <Typography className={classes.title}>Log In</Typography>
         <Box className={classes.box}>
           <TextField
-            onChange={e => setemail(e.target.value)}
+            onChange={handleEmail}
             error={emailError === "" ? false : true}
             helperText={emailError ? emailError : ""}
             id="email"
@@ -105,7 +143,7 @@ export default function SignIn() {
             variant="outlined"
           />
           <TextField
-            onChange={e => setPassword(e.target.value)}
+            onChange={handlePassword}
             error={passwordErr === "" ? false : true}
             helperText={passwordErr ? passwordErr : ""}
             id="password"
@@ -121,7 +159,7 @@ export default function SignIn() {
             className={classes.button}
             onClick={validate}
           >
-            Sign In
+            <Typography style={{ color: "white" }}>Log In</Typography>
           </Button>
           <Typography style={{ marginTop: "15px" }}>
             Do you have an account?{" "}

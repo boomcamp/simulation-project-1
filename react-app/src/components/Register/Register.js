@@ -8,6 +8,9 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { NavLink } from "react-router-dom";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
+import axios from "axios";
+import Swal from "sweetalert2";
+import AppBar from "../AppBar/AppBar";
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -56,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Register() {
+export default function Register(props) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,6 +73,7 @@ export default function Register() {
   const [ErrorLastname, setErrorLastname] = useState("");
   const [ErrorPass, setErrorPass] = useState("");
   const [ErrorConfirmPass, setErrorConfirmPass] = useState("");
+  const [token, setNewToken] = useState("");
 
   const handleFirstname = e => {
     setFirstname(e.target.value);
@@ -92,7 +96,7 @@ export default function Register() {
     setConfirmPass(e.target.value);
   };
 
-  const signIn = e => {
+  const signUp = e => {
     firstname === ""
       ? setErrorFirstname("This field is required")
       : setErrorFirstname("");
@@ -102,7 +106,6 @@ export default function Register() {
     username === ""
       ? setErrorUsername("This field is required")
       : setErrorUsername("");
-    password === "" ? setErrorPass("This field is required") : setErrorPass("");
 
     if (email === "") {
       setErrorEmail("This field is required");
@@ -115,17 +118,70 @@ export default function Register() {
         setErrorEmail("");
       } else setErrorEmail("Invalid Email Format");
     }
+    if (password === "") {
+      setErrorPass("This field is required.");
+    } else {
+      if (password.length < 8) {
+        setErrorPass("Please enter at least 8 characters");
+      } else {
+        setErrorPass("");
+      }
+    }
 
     if (confirmPass === "") {
       setErrorConfirmPass("This field is required");
     } else {
-      if (confirmPass !== password) {
+      if (confirmPass === password && password.length >= 8) {
+        axios
+          .post("http://localhost:3000/register", {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            username: username,
+            password: password
+          })
+          .then(token => {
+            localStorage.setItem("newToken", token.data.accessToken);
+            setNewToken(token.data.accessToken);
+            axios
+              .get(`http://localhost:3000/users?q=${email}`, {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("newToken")}`
+                }
+              })
+              .then(res => {
+                localStorage.setItem("Name", res.data[0].firstName);
+                {
+                  Swal.fire({
+                    title: "Signed Up Successfully",
+                    text: "Please Login to your account",
+                    icon: "success"
+                  });
+                }
+                props.history.push("/login");
+              })
+              .catch(e => {
+                console.log(e);
+                Swal.fire({
+                  title: "Failed to Signup!",
+                  icon: "success"
+                });
+              });
+          })
+          .catch(e => {
+            Swal.fire({
+              title: "Failed to Signup! Please try again",
+              icon: "success"
+            });
+          });
+      } else {
         setErrorConfirmPass("Confirm your password");
       }
     }
   };
   return (
     <React.Fragment>
+      <AppBar />
       <Container maxWidth="fixed" className={classes.container}>
         {" "}
         <AccountCircleIcon color="primary" className={classes.icon} />
@@ -202,14 +258,14 @@ export default function Register() {
             color="primary"
             className={classes.button}
             style={{ margin: "10px auto" }}
-            onClick={signIn}
+            onClick={signUp}
           >
             Register
           </Button>
           <Typography style={{ marginTop: "15px" }}>
             Already have an account?{" "}
             <NavLink to="/login">
-              <Link style={{ fontSize: "17px" }}>Sign In.</Link>
+              <Link style={{ fontSize: "17px" }}>Log In.</Link>
             </NavLink>
           </Typography>
         </Box>

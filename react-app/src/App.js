@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import SignIn from "./components/SignIn/SignIn";
 import Register from "./components/Register/Register";
 import ManageUser from "./components/ManageUser/ManageUser";
 
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
 
 function App() {
+  const [redirect, setRedirect] = useState(false);
   return (
     <div className="App">
       <BrowserRouter>
+        {redirect ? <Redirect to="/manage" /> : null}
         <Switch>
-          <Route exact path="/" component={SignIn} />
-          <Route path="/login" component={SignIn} />
+          <Route
+            exact
+            path="/"
+            render={props => <SignIn setRedirect={setRedirect} />}
+          />
+          <Route
+            path="/login"
+            render={props => <SignIn setRedirect={setRedirect} />}
+          />
           <Route path="/register" component={Register} />
           <Route path="/manage" component={ManageUser} />
         </Switch>

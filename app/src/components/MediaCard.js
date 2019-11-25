@@ -7,12 +7,11 @@ export default class MediaCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            step: 1,
+            data: {
             email: "",
-            password: "",
-            username: "",
-            firstname: "",
-            lastname: ""
+            password: ""
+            },
+            step: 1,
         }
     }
 
@@ -30,7 +29,8 @@ export default class MediaCard extends Component {
 
     handleChange = e => {
         this.setState({
-            [e.target.name]: e.target.value
+            ...this.state,
+            data: { ...this.state.data, [e.target.name]: e.target.value }
         });
         console.log(this.state)
     }
@@ -39,11 +39,16 @@ export default class MediaCard extends Component {
     handleLogin = (e) => {
         e.preventDefault();
         axios({
-            method: "GET",
-            url: `http://localhost:4000/users`,
-            headers: { Authorization: `Bearer` }
+            method: "post",
+            url: `http://localhost:4000/login`,
+            data: this.state.data
         })
-            .then(e => console.log(e.data))
+            .then(e => {
+                console.log(e)
+                localStorage.setItem('usertoken', e.data.accessToken)
+                this.props.history.push('/usermanager')
+            })
+            
             .catch(e => console.log(e))
     }
 
@@ -64,6 +69,7 @@ export default class MediaCard extends Component {
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
                         handleChange={this.handleChange}
+                        handleLogin={this.handleLogin}
                     />
                 )
             default:

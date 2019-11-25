@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { AppBar, Toolbar, Typography, withStyles, TextField, Container } from '@material-ui/core';
-import { Card, CardContent, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, withStyles, TextField, Container, Card, CardContent, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -57,6 +56,9 @@ const useStyles = (theme => ({
     },
     bar: {
         background: "transparent"
+    },
+    errormsg: {
+        color: "red",
     }
 }));
 
@@ -64,34 +66,76 @@ class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
-            password: "",
-            username: "",
-            firstname: "",
-            lastname: ""
+            data: {
+                email: "",
+                password: "",
+                username: "",
+                firstName: "",
+                lastName: "",
+            },
+            dataErr: {
+                password2: "",
+                emailerr: "",
+                passworderr: "",
+                password2err: "",
+                usernameerr: "",
+                firstNameerr: "",
+                lastNameerr: ""
+            }
         }
     }
 
-    handleSubmit = (e) => {
-        axios({
-            method: "POST",
-            url: `http://localhost:4000/register`,
-            headers: this.state
-        })
-            .then(e => console.log(e))
-            .catch(e => console.log(e))
-    }
 
 
     handleChange = e => {
         this.setState({
-            [e.target.name]: e.target.value
+            data: {
+                ...this.state.data,
+                [e.target.name]: e.target.value
+            },
+            dataErr: {
+                ...this.state.dataErr,
+                [`${e.target.name}err`]: this.validate(e.target.name, e.target.value)
+            }
         });
-        console.log(this.state)
+        
+        console.log(this.state.data)
+    }
+
+    handleChangeEer = e => {
+        this.setState({
+            ...this.state,
+            dataErr: { [e.target.name]: e.target.value }
+        });
+    }
+
+    validate = (getName, getValue) => {
+        var passregex = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
+        let data = '';
+        if (getName === 'firstName') getValue.length > 3 ? data = "" : data = "firstname should be more than 1 character*"
+        if (getName === 'lastName') getValue.length > 3 ? data = "" : data = "lastname should be more than 1 character*"
+        if (getName === 'username') getValue.length > 3 ? data = "" : data = "username should be more than 1 character*"
+        if (getName === 'password') getValue.length < 8 ? data = "password must have a minimum of 8 characters*" 
+           : getValue.match(passregex) ? data = "password must contain 1uppercase, a number, & 1 special case character*" : data = "";
+
+        return data
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        axios({
+            method: "post",
+            url: `http://localhost:4000/register/active=true`,
+            data: this.state.data
+        })
+            .then(e => console.log(e.data))
+            .catch(e => console.log(e))
     }
 
     render() {
         const { classes } = this.props;
+        const { email, password, password2, username, firstname, lastname } = this.state;
         return (
             <div className={classes.root} >
                 <AppBar position="static" className={classes.bar}>
@@ -112,7 +156,7 @@ class Register extends Component {
                             <span className={classes.subtitle}>
                                 * Required Fields
                     </span>
-                            <form noValidate autoComplete="off">
+                            <form autoComplete="off" onSubmit={this.handleSubmit}>
                                 <div className={classes.name}>
                                     <TextField
                                         required
@@ -121,8 +165,9 @@ class Register extends Component {
                                         label="First Name"
                                         margin="normal"
                                         variant="outlined"
-                                        name="firstname"
+                                        name="firstName"
                                         type="firstname"
+                                        value={firstname}
                                         onChange={e => this.handleChange(e)}
                                     />
                                     <TextField
@@ -132,11 +177,14 @@ class Register extends Component {
                                         label="Last Name"
                                         margin="normal"
                                         variant="outlined"
-                                        name="lastname"
+                                        name="lastName"
                                         type="lastname"
+                                        value={lastname}
                                         onChange={e => this.handleChange(e)}
                                     />
                                 </div>
+                                <div className={classes.errormsg}>{this.state.dataErr.firstNameerr}</div>
+                                <div className={classes.errormsg}>{this.state.dataErr.lastNameerr}</div>
                                 <TextField
                                     required
                                     id="username"
@@ -146,8 +194,10 @@ class Register extends Component {
                                     variant="outlined"
                                     name="username"
                                     type="username"
+                                    value={username}
                                     onChange={e => this.handleChange(e)}
                                 />
+                                <div className={classes.errormsg}>{this.state.dataErr.usernameerr}</div>
                                 <TextField
                                     required
                                     id="email"
@@ -157,8 +207,10 @@ class Register extends Component {
                                     variant="outlined"
                                     name="email"
                                     type="email"
+                                    value={email}
                                     onChange={e => this.handleChange(e)}
                                 />
+                                <div className={classes.errormsg}>{this.state.dataErr.emailerr}</div>
                                 <div className={classes.name}>
                                     <TextField
                                         required
@@ -169,6 +221,7 @@ class Register extends Component {
                                         variant="outlined"
                                         name="password"
                                         type="password"
+                                        value={password}
                                         onChange={e => this.handleChange(e)}
                                     />
                                     <TextField
@@ -179,9 +232,12 @@ class Register extends Component {
                                         variant="outlined"
                                         name="password2"
                                         type="password"
-                                        onChange={e => this.handleChange(e)}
+                                        value={password2}
+                                        onChange={e => this.handleChangeEer(e)}
                                     />
                                 </div>
+                                <div className={classes.errormsg}>{this.state.dataErr.passworderr}</div>
+                                <div className={classes.errormsg}>{this.state.dataErr.password2err}</div>
                                 <div className={classes.buttons}>
                                     <Link to="/">
                                         <Button
@@ -192,7 +248,6 @@ class Register extends Component {
                                             Cancel
                             </Button>
                                     </Link>
-
                                     <Button
                                         className={classes.reg}
                                         variant="contained"
@@ -203,7 +258,6 @@ class Register extends Component {
                             </Button>
                                 </div>
                             </form>
-
                         </CardContent>
                     </Card>
                 </div>

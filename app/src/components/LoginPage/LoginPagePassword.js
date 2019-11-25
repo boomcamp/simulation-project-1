@@ -2,7 +2,6 @@ import React from 'react'
 import { AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
 import { Card, CardContent, Button, TextField, CardActions } from '@material-ui/core';
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         display: "flex",
@@ -44,10 +43,10 @@ const useStyles = makeStyles(theme => ({
         marginRight: -10
     },
     ok: {
-        marginRight: 5
+        marginRight: -10
     },
     forgot: {
-        marginLeft: -23
+        marginLeft: -33
     },
     button: {
         marginRight: -50
@@ -71,7 +70,7 @@ export default function LoginPage(props) {
                     <TextField
                         id="password"
                         className={classes.textField}
-                        label="Enter your password"
+                        label="Password"
                         margin="normal"
                         variant="outlined"
                         name="password"
@@ -92,16 +91,16 @@ export default function LoginPage(props) {
                             className={classes.back}
                             onClick={props.prevStep}>
                             Back
-                    </Button>
+                        </Button>
                     </div>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.ok}
-                        onClick={props.handleLogin}>
-                        OK
-                    </Button>
-
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.ok}
+                            onClick={props.handleLogin}
+                        >
+                            OK
+                        </Button>
                 </CardContent>
             </Card>
         </div >

@@ -74,11 +74,12 @@ export default function LoginPage(props) {
                     <TextField
                         id="email"
                         className={classes.textField}
-                        label="Email or Username"
+                        label="Email"
                         margin="normal"
                         variant="outlined"
                         name="email"
                         type="email"
+                        value={props.email}
                         onChange={e => props.handleChange(e)}
                     />
                 </CardContent>

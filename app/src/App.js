@@ -10,27 +10,63 @@ export default class App extends Component {
     this.state = {
       firstName: "",
       lastName: "",
-      email: " ",
+      email: "",
       username: "",
-      password: " ",
-      accessToken: "f",
+      password: "",
+      repassword: "",
+      accessToken: "",
+      confirm: "",
+      validation: [],
       regSuccess: false
     };
   }
-  handleOnChange = (val, check) => {
-    check === "fname"
-      ? this.setState({ firstName: val })
-      : check === "lname"
-      ? this.setState({ lastName: val })
-      : check === "email"
-      ? this.setState({ email: val })
-      : check === "pass"
-      ? this.setState({ password: val })
-      : check === "username"
-      ? this.setState({ username: val })
-      : toast.error("Error!");
-  };
 
+  handleOnChange = (val, check) => {
+    if (check === "confirm") {
+      this.state.password === val
+        ? this.setState({ confirm: true })
+        : this.setState({ confirm: false });
+    } else if (check === "fname") {
+      this.setState({ firstName: val });
+    } else if (check === "lname") {
+      this.setState({ lastName: val });
+    } else if (check === "email") {
+      this.setState({ email: val });
+    } else if (check === "pass") {
+      this.setState({ password: val });
+    } else if (check === "username") {
+      this.setState({ username: val });
+    } else {
+      toast.error("Error!");
+    }
+
+    const temp = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.password
+    };
+
+    this.setState({
+      validation: Object.assign({}, temp)
+    });
+  };
+  handleReg = () => {
+    this.setState({
+      regSuccess: false,
+      firstName: "",
+      lastName: "",
+      email: "",
+      username: "",
+      password: "",
+      repassword: "",
+      accessToken: "",
+      confirm: "",
+      validation: []
+    });
+    console.log(this.state.regSuccess);
+  };
   handleLogin = () => {
     const Obj = {
       email: this.state.email,
@@ -48,8 +84,7 @@ export default class App extends Component {
             .then(response => {
               localStorage.setItem("user", response.data.accessToken);
               this.setState({
-                token: response.data.accessToken,
-                accessToken: JSON.stringify(localStorage.getItem("user"))
+                accessToken: localStorage.getItem("user")
               });
               toast(`Hello There! ${this.state.email}`);
             })
@@ -82,9 +117,10 @@ export default class App extends Component {
     localStorage.clear();
     this.setState({
       accessToken: "",
-      email: "null",
-      password: "null"
+      email: "",
+      password: ""
     });
+    toast.success("Successfully Logout!");
   };
 
   render() {
@@ -98,6 +134,9 @@ export default class App extends Component {
           handleSignUp={this.handleSignUp}
           handleLogout={this.handleLogout}
           regSuccess={this.state.regSuccess}
+          validation={this.state.validation}
+          confirm={this.state.confirm}
+          handleReg={this.handleReg}
         />
       </HashRouter>
     );

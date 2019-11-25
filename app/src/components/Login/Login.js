@@ -9,14 +9,15 @@ const Div = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 100px;
 `;
 
 class Login extends React.Component {
   render() {
-    const { handleLogin, handleOnChange } = this.props;
+    const { handleLogin, handleOnChange, handleReg } = this.props;
     return (
       <Div>
-        <MDBCard style={{ marginTop: "180px", width: "500px" }}>
+        <MDBCard style={{ width: "500px" }}>
           <div className="header pt-3 grey lighten-2">
             <MDBRow className="d-flex justify-content-start">
               <h3 className="deep-grey-text mt-3 mb-4 pb-1 mx-5">Log in</h3>
@@ -48,7 +49,10 @@ class Login extends React.Component {
               </MDBBtn>
             </div>
             <Link to="/register">
-              <p className="font-small grey-text d-flex justify-content-center">
+              <p
+                className="font-small grey-text d-flex justify-content-center"
+                onClick={handleReg}
+              >
                 Don't have an account?{" "}
                 <span className="dark-grey-text font-weight-bold ml-1">
                   Sign up

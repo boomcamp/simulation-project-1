@@ -1,5 +1,11 @@
 import React from "react";
+import axios from "axios";
+import MaterialTable from "material-table";
 import styled from "styled-components";
+import { toast } from "react-toastify";
+import "./User.css";
+import "../../../node_modules/react-toastify/dist/ReactToastify.css";
+
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -11,16 +17,12 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
-  MDBIcon,
-  MDBDataTable
+  MDBIcon
 } from "mdbreact";
 
 const Div = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  margin-top: 100px;
+  padding: 100px;
 `;
 
 class Users extends React.Component {
@@ -28,113 +30,40 @@ class Users extends React.Component {
     super();
     this.state = {
       isOpen: false,
-      data: {
-        columns: [
-          {
-            label: "Name",
-            field: "name",
-            sort: "asc",
-            width: 150
-          },
-          {
-            label: "Position",
-            field: "position",
-            sort: "asc",
-            width: 270
-          },
-          {
-            label: "Office",
-            field: "office",
-            sort: "asc",
-            width: 200
-          },
-          {
-            label: "Age",
-            field: "age",
-            sort: "asc",
-            width: 100
-          },
-          {
-            label: "Start date",
-            field: "date",
-            sort: "asc",
-            width: 150
-          },
-          {
-            label: "Salary",
-            field: "salary",
-            sort: "asc",
-            width: 100
-          }
-        ],
-        rows: [
-          {
-            name: "Tiger Nixon",
-            position: "System Architect",
-            office: "Edinburgh",
-            age: "61",
-            date: "2011/04/25",
-            salary: "$320"
-          },
-          {
-            name: "Garrett Winters",
-            position: "Accountant",
-            office: "Tokyo",
-            age: "63",
-            date: "2011/07/25",
-            salary: "$170"
-          },
-          {
-            name: "Ashton Cox",
-            position: "Junior Technical Author",
-            office: "San Francisco",
-            age: "66",
-            date: "2009/01/12",
-            salary: "$86"
-          },
-          {
-            name: "Cedric Kelly",
-            position: "Senior Javascript Developer",
-            office: "Edinburgh",
-            age: "22",
-            date: "2012/03/29",
-            salary: "$433"
-          },
-          {
-            name: "Airi Satou",
-            position: "Accountant",
-            office: "Tokyo",
-            age: "33",
-            date: "2008/11/28",
-            salary: "$162"
-          },
-          {
-            name: "Brielle Williamson",
-            position: "Integration Specialist",
-            office: "New York",
-            age: "61",
-            date: "2012/12/02",
-            salary: "$372"
-          },
-          {
-            name: "Herrod Chandler",
-            position: "Sales Assistant",
-            office: "San Francisco",
-            age: "59",
-            date: "2012/08/06",
-            salary: "$137"
-          }
-        ]
-      }
+      columns: [
+        { title: "First Name", field: "firstName" },
+        { title: "Last Name", field: "lastName" },
+        { title: "Username", field: "username" },
+
+        {
+          title: "Email Address",
+          field: "email"
+        },
+        {
+          title: "Status",
+          field: "active",
+          lookup: { true: "Active", false: "Inactive" }
+        }
+      ],
+      data: []
     };
   }
+  componentDidMount = () => {
+    axios
+      .get("http://localhost:3000/users", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("user")}` }
+      })
+      .then(response => {
+        this.setState({ data: response.data });
+      });
+  };
 
   toggleCollapse = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
   render() {
-    const { handleLogout } = this.props;
+    const { handleLogout, accessToken } = this.props;
     return (
       <div>
         <MDBNavbar color="red" dark expand="md">
@@ -160,12 +89,57 @@ class Users extends React.Component {
           </MDBCollapse>
         </MDBNavbar>
         <Div>
-          <MDBDataTable
-            style={{ width: "1200px" }}
-            striped
-            bordered
-            hover
+          <MaterialTable
+            title="All Users"
+            columns={this.state.columns}
             data={this.state.data}
+            options={{
+              pageSizeOptions: [10, 15, 20],
+              pageSize: 10
+            }}
+            editable={{
+              onRowUpdate: (newData, oldData) =>
+                new Promise(resolve => {
+                  setTimeout(() => {
+                    resolve();
+                    if (oldData) {
+                      this.setState(prevState => {
+                        const data = [...prevState.data];
+                        data[data.indexOf(oldData)] = newData;
+                        return { ...prevState, data };
+                      });
+                    }
+                  }, 400);
+                  axios
+                    .patch(
+                      `http://localhost:3000/users/${newData.id}`,
+                      {
+                        email: newData.email,
+                        username: newData.username,
+                        firstName: newData.firstName,
+                        lastName: newData.lastName,
+                        active: newData.active
+                      },
+                      {
+                        headers: { Authorization: `Bearer ${accessToken}` }
+                      }
+                    )
+                    .then(
+                      toast.success("Account has been Successfully Edited!")
+                    );
+                }),
+              onRowDelete: oldData =>
+                new Promise(resolve => {
+                  setTimeout(() => {
+                    resolve();
+                    this.setState(prevState => {
+                      const data = [...prevState.data];
+                      data.splice(data.indexOf(oldData), 1);
+                      return { ...prevState, data };
+                    });
+                  }, 600);
+                })
+            }}
           />
         </Div>
       </div>

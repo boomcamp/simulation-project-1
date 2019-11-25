@@ -13,20 +13,23 @@ export default class Routes extends React.Component {
       handleSignUp,
       accessToken,
       handleLogout,
-      regSuccess
+      regSuccess,
+      validation,
+      confirm,
+      handleReg
     } = this.props;
-
     return (
       <Switch>
         <Route
           exact
           render={() =>
             accessToken ? (
-              <Users handleLogout={handleLogout} />
+              <Users handleLogout={handleLogout} accessToken={accessToken} />
             ) : (
               <Login
                 handleOnChange={handleOnChange}
                 handleLogin={handleLogin}
+                handleReg={handleReg}
               />
             )
           }
@@ -40,6 +43,8 @@ export default class Routes extends React.Component {
               <Registration
                 handleOnChange={handleOnChange}
                 handleSignUp={handleSignUp}
+                validation={validation}
+                confirm={confirm}
               />
             )
           }

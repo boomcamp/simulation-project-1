@@ -134,11 +134,12 @@ export default function Register(props) {
       if (confirmPass === password && password.length >= 8) {
         axios
           .post("http://localhost:3000/register", {
-            firstname: firstname,
-            lastname: lastname,
+            firstName: firstname,
+            lastName: lastname,
             email: email,
             username: username,
-            password: password
+            password: password,
+            active: true
           })
           .then(token => {
             localStorage.setItem("newToken", token.data.accessToken);

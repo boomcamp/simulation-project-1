@@ -23,3 +23,12 @@
 .MuiTableRow-root .MuiTableCell-root {
   padding: 0 !important;
 }
+tbody.MuiTableBody-root tr.MuiTableRow-root:first-of-type {
+  height: 10px;
+  position: absolute;
+  top: -1px;
+  right: 311px;
+}
+div.MuiSelect-selectMenu {
+  width: 125px;
+}

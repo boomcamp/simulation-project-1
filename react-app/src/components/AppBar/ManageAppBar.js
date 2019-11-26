@@ -31,9 +31,10 @@ export default function ButtonAppBar() {
       confirmButtonText: "Yes"
     }).then(result => {
       if (result.value) {
-        Swal.fire("Logged out successfully!");
-        localStorage.clear();
-        window.location.href = "/login";
+        Swal.fire("Logged out successfully!").then(function() {
+          localStorage.clear();
+          window.location.href = "/login";
+        });
       } else {
         window.location.href = "/manage";
       }

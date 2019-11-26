@@ -8,11 +8,13 @@ export default class MediaCard extends Component {
         super(props);
         this.state = {
             data: {
-            email: "",
-            password: ""
+                email: "",
+                password: ""
             },
             step: 1,
+            redirect: false
         }
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     nextStep = () => {
@@ -44,17 +46,17 @@ export default class MediaCard extends Component {
             data: this.state.data
         })
             .then(e => {
-                console.log(e)
-                localStorage.setItem('usertoken', e.data.accessToken)
+                console.log("here", e)
+                console.log(this.props)
+                localStorage.setItem('token', e.data.accessToken)
                 this.props.history.push('/usermanager')
+
             })
-            
             .catch(e => console.log(e))
     }
 
     render() {
         const { step } = this.state;
-
         switch (step) {
             case 1:
                 return (

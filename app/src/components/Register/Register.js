@@ -98,7 +98,7 @@ class Register extends Component {
                 [`${e.target.name}err`]: this.validate(e.target.name, e.target.value)
             }
         });
-        
+
         console.log(this.state.data)
     }
 
@@ -112,11 +112,11 @@ class Register extends Component {
     validate = (getName, getValue) => {
         var passregex = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
         let data = '';
-        if (getName === 'firstName') getValue.length > 3 ? data = "" : data = "firstname should be more than 1 character*"
-        if (getName === 'lastName') getValue.length > 3 ? data = "" : data = "lastname should be more than 1 character*"
-        if (getName === 'username') getValue.length > 3 ? data = "" : data = "username should be more than 1 character*"
-        if (getName === 'password') getValue.length < 8 ? data = "password must have a minimum of 8 characters*" 
-           : getValue.match(passregex) ? data = "password must contain 1uppercase, a number, & 1 special case character*" : data = "";
+        if (getName === 'firstName') getValue.length > 1 ? data = "" : data = "firstname should be more than 2 character*"
+        if (getName === 'lastName') getValue.length > 1 ? data = "" : data = "lastname should be more than 2 character*"
+        if (getName === 'username') getValue.length > 5 ? data = "" : data = "username should be more than 5 character*"
+        if (getName === 'password') getValue.length < 8 ? data = "password must have a minimum of 8 characters*"
+            : getValue.match(passregex) ? data = "password must contain 1uppercase, a number, & 1 special case character*" : data = "";
 
         return data
     }
@@ -129,7 +129,9 @@ class Register extends Component {
             url: `http://localhost:4000/register/active=true`,
             data: this.state.data
         })
-            .then(e => console.log(e.data))
+            .then(e => {
+                this.props.history.push("/")
+            })
             .catch(e => console.log(e))
     }
 

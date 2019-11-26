@@ -1,6 +1,6 @@
 import React from 'react'
 import { AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
-import { Card, CardContent, Button, TextField, CardActions } from '@material-ui/core';
+import { Card, CardContent, Button, TextField, Tooltip } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -79,11 +79,13 @@ export default function LoginPage(props) {
                     />
                 </CardContent>
                 <CardContent className={classes.link2}>
-                    <CardActions>
-                        <Button disabled size="small" color="primary" className={classes.forgot}>
-                            Forgot Password?
-                        </Button>
-                    </CardActions>
+                    <Tooltip title="You don't have permission to do this">
+                        <span>
+                            <Button disabled size="small" color="primary" className={classes.forgot}>
+                                Forgot Password?
+                                </Button>
+                        </span>
+                    </Tooltip>
                     <div className={classes.button}>
                         <Button
                             variant="contained"
@@ -93,13 +95,13 @@ export default function LoginPage(props) {
                             Back
                         </Button>
                     </div>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            className={classes.ok}
-                            onClick={props.handleLogin}
-                        >
-                            OK
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.ok}
+                        onClick={props.handleLogin}
+                    >
+                        OK
                         </Button>
                 </CardContent>
             </Card>

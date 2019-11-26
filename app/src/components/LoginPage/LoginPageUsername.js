@@ -1,6 +1,6 @@
 import React from 'react'
 import { AppBar, Toolbar, Typography, makeStyles, CardActions } from '@material-ui/core';
-import { Card, CardContent, Button, TextField } from '@material-ui/core';
+import { Card, CardContent, Button, TextField, Tooltip } from '@material-ui/core';
 import { Route, Link } from 'react-router-dom';
 
 import Register from '../Register/Register';
@@ -84,9 +84,13 @@ export default function LoginPage(props) {
                     />
                 </CardContent>
                 <div className={classes.link}>
-                    <Button disabled size="small" color="primary" >
-                        Forgot Email?
-                        </Button>
+                    <Tooltip title="You don't have permission to do this">
+                        <span>
+                            <Button disabled size="small" color="primary" >
+                                Forgot Email?
+                            </Button>
+                        </span>
+                    </Tooltip>
                 </div>
                 <CardContent className={classes.link2} >
                     <CardActions>

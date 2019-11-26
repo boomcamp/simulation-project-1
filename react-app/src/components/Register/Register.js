@@ -113,7 +113,9 @@ export default function Register(props) {
       confirmPass === "" ||
       firstname === "" ||
       lastname === "" ||
-      username === ""
+      username === "" ||
+      password.length < 8 ||
+      password !== confirmPass
     ) {
       Swal.fire({
         title: "Failed to signup!",
@@ -147,6 +149,7 @@ export default function Register(props) {
       setErrorConfirmPass("This field is required");
     } else {
       if (confirmPass === password && password.length >= 8) {
+        setErrorConfirmPass("");
         axios
           .post("http://localhost:3000/register", {
             firstName: firstname,
@@ -191,7 +194,7 @@ export default function Register(props) {
             });
           });
       } else {
-        setErrorConfirmPass("Confirm your password");
+        setErrorConfirmPass("Password did not match");
       }
     }
   };

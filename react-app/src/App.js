@@ -23,7 +23,7 @@ function App() {
             render={props => <SignIn setRedirect={setRedirect} />}
           />
           <Route path="/register" component={Register} />
-          <Route path="/manage" component={ManageUser} />
+          <Route path="/manage-users" component={ManageUser} />
         </Switch>
       </BrowserRouter>
     </div>

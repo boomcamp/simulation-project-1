@@ -23,7 +23,8 @@ export default class App extends React.Component {
       redirect: false,
       error: false,
       errMsg: "",
-      errorEmail: false
+      errorEmail: false,
+      errorEmailMsg: ""
     };
   }
   componentDidMount() {
@@ -160,7 +161,8 @@ export default class App extends React.Component {
       redirect: false,
       error: false,
       errMsg: "",
-      errorEmail: false
+      errorEmail: false,
+      errorEmailMsg: ""
     });
   };
   render() {

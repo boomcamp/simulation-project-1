@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, Fragment} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import axios from 'axios'
 import { TextField } from '@material-ui/core';
@@ -49,7 +49,11 @@ export default function Login() {
     }
 
     return (
-        <div className='c-login-container'>
+        <Fragment>
+
+            <div className='c-login-overlay'/>
+            
+            <div className='c-login-container'>
             <h3>Hello!<span> Sign in to continue</span></h3>
             <ValidatorForm 
                 // ref="form"
@@ -100,5 +104,6 @@ export default function Login() {
                 </div>
             </ValidatorForm>
         </div>
+        </Fragment>
     )
 }

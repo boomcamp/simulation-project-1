@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState, Fragment} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 
 
@@ -24,12 +24,15 @@ export default function UserManagement() {
     }
 
     return (
-        <section>
-            
-            <DashBoard />
-            <div className='TableContainer'>
-                <UserTable3 />
-            </div>
-        </section>
+        <Fragment>
+            <section>
+
+                
+                <DashBoard />
+                <div className='TableContainer'>
+                    <UserTable3 />
+                </div>
+            </section>
+        </Fragment>
     )
 }

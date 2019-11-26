@@ -39,6 +39,7 @@ export function StoreData(userData){
 }
 
 export function RSignUp(userData){
+    
     axios.post('http://localhost:3000/register',{
                 "email" :  userData.email,
                 "password" : userData.password.toString(),

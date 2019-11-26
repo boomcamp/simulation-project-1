@@ -16,6 +16,13 @@
 
 /* LOGIN COMPONENT CSS START*/
 
+.c-login-overlay{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgb(0, 50, 107);;
+}
+
 .c-login-container{
   width: 400px;
   padding: 10px;
@@ -30,6 +37,8 @@
   border: rgb(233, 233, 233) 1px solid;
   border-radius: 14px;
   padding: 20px 10px;
+  /* border: 1px solid red; */
+  top: 240px;
 }
 
 .c-login-container h3, .c-signup-container p{
@@ -105,7 +114,7 @@
   flex-direction: column;
   margin: 0 auto;
   position: relative;
-  top: 10%;
+  top: 75px;
 }
 
 /* SIGNUP COMPONENT CSS END */

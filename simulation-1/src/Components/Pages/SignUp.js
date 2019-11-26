@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, Fragment} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import axios from 'axios'
 
@@ -71,9 +71,24 @@ export default function SignUp() {
             return null;
         }
 
-        RSignUp().then(res=>{
+        axios.post('http://localhost:3000/register',{
+                "email" :  userData.email,
+                "password" : userData.password.toString(),
+                "plainPassword" : userData.password.toString(),
+                "username": userData.username,
+                "firstName": userData.firstName,
+                "lastName": userData.lastName,
+                "active": true
+            }
+            ).then(data=>{
+                return data;
+            })
+            .catch(e=>{
+                console.log(e);
+            }).then(res=>{
 
             console.log(res.data.accessToken);
+            
             //store
 
             localStorage.setItem('Login', true);
@@ -102,119 +117,124 @@ export default function SignUp() {
     }
 
     return (
-        <div className='c-signup-container c-login-container'>
-            <p>Kindly provide the data to register</p>
-            <ValidatorForm 
-                className='c-inputs-container' autoComplete='off'
-                onSubmit={Register}
-                onError={errors => console.log(errors)}>
+        <Fragment>
 
-                <TextValidator
-                    required
-                    id='outlined-required'
-                    label='User Name'
-                    // defaultValue='Email'
-                    margin='normal'
-                    variant='outlined'
-                    className='c-login-inputs' asdasdasdasadasdasd12312312312
-                    onChange={eventChecker}
-                    name='username'
-                    validators={['required']}
-                    errorMessages={['This field is required']}
-                    value={userData.username}
-                />
+            <div className='c-login-overlay'/>
 
-                <TextValidator
-                    required
-                    id='outlined-required'
-                    label='First Name'
-                    // defaultValue='Email'
-                    margin='normal'
-                    variant='outlined'
-                    className='c-login-inputs' 
-                    onChange={eventChecker}
-                    name='firstName'
-                    validators={['required', 'matchRegexp:^[a-zA-Z]*$']}
-                    errorMessages={['this field is required', 'Kindly input proper text']}
-                    value={userData.firstName}
-                />
 
-                <TextValidator
-                    required
-                    id='outlined-required'
-                    label='Last Name'
-                    // defaultValue='Email'
-                    margin='normal'
-                    variant='outlined'
-                    className='c-login-inputs' 
-                    onChange={eventChecker}
-                    name='lastName'
+            <div className='c-signup-container c-login-container'>
+                <p>Kindly provide the data to register</p>
+                <ValidatorForm 
+                    className='c-inputs-container' autoComplete='off'
+                    onSubmit={Register}
+                    onError={errors => console.log(errors)}>
 
-                    validators={['required', 'matchRegexp:^[a-zA-Z]*$']}
+                    <TextValidator
+                        required
+                        id='outlined-required'
+                        label='User Name'
+                        // defaultValue='Email'
+                        margin='normal'
+                        variant='outlined'
+                        className='c-login-inputs' asdasdasdasadasdasd12312312312
+                        onChange={eventChecker}
+                        name='username'
+                        validators={['required']}
+                        errorMessages={['This field is required']}
+                        value={userData.username}
+                    />
 
-                    errorMessages={['this field is required', 'Kindly input proper text']}
+                    <TextValidator
+                        required
+                        id='outlined-required'
+                        label='First Name'
+                        // defaultValue='Email'
+                        margin='normal'
+                        variant='outlined'
+                        className='c-login-inputs' 
+                        onChange={eventChecker}
+                        name='firstName'
+                        validators={['required', 'matchRegexp:^[a-zA-Z]*$']}
+                        errorMessages={['this field is required', 'Kindly input proper text']}
+                        value={userData.firstName}
+                    />
 
-                    value={userData.lastName}
-                />
+                    <TextValidator
+                        required
+                        id='outlined-required'
+                        label='Last Name'
+                        // defaultValue='Email'
+                        margin='normal'
+                        variant='outlined'
+                        className='c-login-inputs' 
+                        onChange={eventChecker}
+                        name='lastName'
 
-                <TextValidator
-                    required
-                    id='outlined-required'
-                    label='Email'
-                    // defaultValue='Email'
-                    margin='normal'
-                    variant='outlined'
-                    className='c-login-inputs' 
-                    onChange={eventChecker}
-                    name='email'
-                    validators={['required', 'isEmail']}
-                    errorMessages={['this field is required', 'Invalid email format']}
-                    value={userData.email}
-                />
+                        validators={['required', 'matchRegexp:^[a-zA-Z]*$']}
 
-                <TextValidator
-                    required
-                    id='outlined-required'
-                    label='Password'
-                    type='password'
-                    // defaultValue='Email'
-                    margin='normal'
-                    variant='outlined'
-                    className='c-login-inputs' 
-                    onChange={eventChecker}
-                    name='password'
-                    validators={['required', 'lengthText']}
-                    errorMessages={['this field is required', 'password too short']}
-                    value={userData.password}
-                />
+                        errorMessages={['this field is required', 'Kindly input proper text']}
 
-                <TextValidator
-                    required
-                    id='outlined-required'
-                    label='Confirm Password'
-                    type='password'
-                    // defaultValue='Email'
-                    margin='normal'
-                    variant='outlined'
-                    className='c-login-inputs' 
-                    onChange={eventChecker}
-                    name='repassword'
-                    validators={['required', 'isPasswordMatch']}
-                    errorMessages={['this field is required', 'Password dont Match']}
-                    value={repassword}
-                />
+                        value={userData.lastName}
+                    />
 
-                <Button
-                    className='c-login-button'
-                    variant='contained' color='primary'
-                    type='submit'
-                    label='Login'>
-                        Register
-                </Button>
-                
-                <Link className='c-signup-button' to='/'>&lt; Go back to log in</Link>
+                    <TextValidator
+                        required
+                        id='outlined-required'
+                        label='Email'
+                        // defaultValue='Email'
+                        margin='normal'
+                        variant='outlined'
+                        className='c-login-inputs' 
+                        onChange={eventChecker}
+                        name='email'
+                        validators={['required', 'isEmail']}
+                        errorMessages={['this field is required', 'Invalid email format']}
+                        value={userData.email}
+                    />
 
-            </ValidatorForm>
-        </div>
+                    <TextValidator
+                        required
+                        id='outlined-required'
+                        label='Password'
+                        type='password'
+                        // defaultValue='Email'
+                        margin='normal'
+                        variant='outlined'
+                        className='c-login-inputs' 
+                        onChange={eventChecker}
+                        name='password'
+                        validators={['required', 'lengthText']}
+                        errorMessages={['this field is required', 'password too short']}
+                        value={userData.password}
+                    />
+
+                    <TextValidator
+                        required
+                        id='outlined-required'
+                        label='Confirm Password'
+                        type='password'
+                        // defaultValue='Email'
+                        margin='normal'
+                        variant='outlined'
+                        className='c-login-inputs' 
+                        onChange={eventChecker}
+                        name='repassword'
+                        validators={['required', 'isPasswordMatch']}
+                        errorMessages={['this field is required', 'Password dont Match']}
+                        value={repassword}
+                    />
+
+                    <Button
+                        className='c-login-button'
+                        variant='contained' color='primary'
+                        type='submit'
+                        label='Login'>
+                            Register
+                    </Button>
+                    
+                    <Link className='c-signup-button' to='/'>&lt; Go back to log in</Link>
+                </ValidatorForm>
+            </div>
+        </Fragment>
     )
 }

@@ -25,7 +25,7 @@ function EditData(newdata, olddata){
     "firstName" : newdata.firstname,
     "lastName" : newdata.lastname,
     "email" : newdata.email,
-    "active" : 'false',
+    "active" : newdata.active,
     "password" : olddata.password
   },{ 
     
@@ -49,7 +49,10 @@ export default function UserTable3(props) {
                       false:'inActive'},
             cellStyle : {maxWidth: '10px'},
             render: rowData => {
-              return (rowData.active === 'true' ? <div className='active-icon' value='c'/> : <div 
+
+              console.log(rowData.active)
+
+              return ( rowData.active === true? <div className='active-icon' value='c'/> : <div 
               className='inactive-icon' value='0'/>
             )}  
 
@@ -58,12 +61,12 @@ export default function UserTable3(props) {
                   <Checkbox 
                   icon={<RadioButtonUncheckedIcon style={{color:'grey'}}/>} checkedIcon={<RadioButtonCheckedRoundedIcon style={{color:'rgb(140, 255, 87)'}} />} value={1} 
 
-                  checked={props.rowData.active==='true'?true:false} 
+                  checked={props.rowData.active} 
 
                   onChange={(e)=>{
                     console.log("item is : " + e.target.checked)
 
-                    props.onChange(e.target.checked ? 'true' : 'false' );
+                    props.onChange(e.target.checked ? true : false );
 
                 }}/>
               )
@@ -74,34 +77,41 @@ export default function UserTable3(props) {
     
     useEffect(()=>{
 
-        console.log('datasd');
 
         axios.get('http://localhost:3000/users',{
             headers: {Authorization: `Bearer ${localStorage.getItem('Token')}`}
         })
         .then(datas=>{
+            
+            console.log('Load Data');
 
             let cdata = [];
+
             datas.data.map(ind=>{
+
+                console.log(ind.active);
+
                 cdata.push({
                     id: ind.id,
                     username : ind.username,
                     firstname : ind.firstName,
                     lastname : ind.lastName,
                     email : ind.email,
-                    active : ind.active ? 'true' : 'false',
+                    active : ind.active,
                     password : ind.password
                 })
             })
-            setState({...state, data:cdata});
+            setState(state=> {return {...state, data:cdata}});
         })
         .catch(e=>{
             console.warn(e);
         })
-    } , [])
+
+    },[])
 
   return (
     <MaterialTable
+      style={{borderRadius: 0}}
       title="User Management"
       columns={state.columns}
       data={state.data}

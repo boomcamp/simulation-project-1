@@ -33,8 +33,6 @@ class Users extends React.Component {
     this.state = {
       isOpen: false,
       columns: [
-        { title: "First Name", field: "firstName", filtering: false },
-        { title: "Last Name", field: "lastName", filtering: false },
         { title: "Username", field: "username", filtering: false },
 
         {
@@ -42,6 +40,9 @@ class Users extends React.Component {
           field: "email",
           filtering: false
         },
+        { title: "First Name", field: "firstName", filtering: false },
+        { title: "Last Name", field: "lastName", filtering: false },
+
         {
           title: "Active",
           field: "active",
@@ -149,7 +150,8 @@ class Users extends React.Component {
                     )
                     .then(
                       toast.success("Account has been Successfully Edited!")
-                    );
+                    )
+                    .catch(() => toast.success("Error Encountered!"));
                 }),
               onRowDelete: oldData =>
                 new Promise(resolve => {
@@ -167,7 +169,8 @@ class Users extends React.Component {
                     })
                     .then(
                       toast.success("Account has been Successfully Deleted!")
-                    );
+                    )
+                    .catch(() => toast.success("Error Encountered!"));
                 })
             }}
           />

@@ -1,8 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import IconButton from '@material-ui/core/IconButton';
+import { withSnackbar } from 'notistack';
 
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
@@ -17,27 +22,33 @@ const useStyles = makeStyles(theme => ({
     },
   }));
 
-export default function LoginForm() {
+function LoginForm({newUser, enqueueSnackbar, closeSnackbar}) {
     const classes = useStyles();
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState(false);
-    const [success, setSuccess] = useState(false);
+    const [user, setUser] = useState({ email: "", pass: ""})
+    const [status, setStatus] = useState({ error: false, success: false})
+    const [showPassword, setShowpassword] = useState(false)
 
+    const action = useCallback((key) => (
+      <Button onClick={() => {closeSnackbar(key) }} style={{display:`flex`}}>OK, GOT IT </Button>
+    ), [closeSnackbar]);
+
+    useEffect(() => {                      
+      if (newUser) enqueueSnackbar('You have Successfully Signed up! You may now Login.', {variant: 'success', action, persist: true,})
+    }, [newUser, enqueueSnackbar, action])
 
     const handleSubmit = () => {
       axios.post('http://localhost:3000/login', {
-              "email": email,
-              "password": password,
+              "email": user.email,
+              "password": user.pass,
           }).then(res => {
             localStorage.setItem('token', res.data.accessToken);
-            localStorage.setItem('user', email);
-            setSuccess(true)
-          }).catch(err =>  setError(true)) 
+            localStorage.setItem('user', user.email);
+            setStatus({...status, success: true})
+          }).catch(err =>  setStatus({...status, error: true})) 
     }
 
-    if(success)
+    if(status.success)
       return <Redirect to="/manage-users" />
 
     return (
@@ -46,30 +57,39 @@ export default function LoginForm() {
             variant="outlined"
             margin="normal"
             fullWidth
-            id="email"
+            id="email" name="email" autoComplete="email"
             label="Email Address"
-            name="email"
-            autoComplete="email"
             autoFocus
-            onChange={(e)=>{setEmail(e.target.value);}}
+            onChange={(e)=>{ setUser({ ...user, email: e.target.value}) }}
             validators={['required']}
             errorMessages={['This field is required']}
-            value={email}
+            value={user.email}
           />
           <TextValidator
             variant="outlined"
             margin="normal"
             fullWidth
-            name="password"
+            name="password" id="password"
             label="Password"
-            type="password"
-            id="password"
-            onChange={(e)=>{setPassword(e.target.value);}}
+            onChange={(e)=>{ setUser({ ...user, pass: e.target.value}) }}
             validators={['required']}
             errorMessages={['This field is required']}
-            value={password}
+            value={user.pass}
+            type={showPassword ? 'text' : 'password'}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowpassword(!showPassword) }
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                    ),
+                }}
           />
-          {(error) ? <p className="error">Incorrect Email/Password</p>: null} 
+          {(status.error) ? <p className="error">Incorrect Email/Password</p>: null} 
           <Button
             type="submit"
             fullWidth
@@ -89,3 +109,5 @@ export default function LoginForm() {
         </ValidatorForm>
     )
 }
+
+export default withSnackbar(LoginForm)

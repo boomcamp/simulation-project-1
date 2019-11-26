@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default function Header() {
     const [name, setName]  = useState();
-    
+
     useEffect(() => {
         axios
         .get(`http://localhost:3000/users?email=${localStorage.getItem('user')}`, { 
@@ -16,12 +16,13 @@ export default function Header() {
 
     return (
         <div className="header">
-            <h1 className="headerTitle"> Welcome! </h1>
+            <h1 className="headerTitle"> Simulation Project 1 </h1>
 
             <div className="dropdown">
-                <button className="drpbtn">{name} ▼</button>
+                <button className="drpbtn"><i className="material-icons account_circle">account_circle</i>▼</button>
                 <div className="drpcontent">
-                    <a href="#home" onClick={ () => {localStorage.removeItem("token"); localStorage.removeItem("user")} }>Logout</a>
+                    <a href="#user">{name} </a>
+                    <a href="#home" style={{color:`red`}} onClick={ () => {localStorage.removeItem("token"); localStorage.removeItem("user")} }>Logout</a>
                 </div>
             </div>
         </div>

@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Login() {
+export default function Login(props) {
   const classes = useStyles();
 
   if(localStorage.getItem('token'))
@@ -51,7 +51,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <LoginForm />
+        <LoginForm newUser={props.location.state}/>
       </div>
     </Container>
   );

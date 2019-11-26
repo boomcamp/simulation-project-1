@@ -1,0 +1,12 @@
+.login{
+  background:white;  align-items: center;
+  margin-top:100px;
+  display: flex;
+  justify-content: center;
+}
+.container{
+  padding:50px;
+  background-color:white;
+  box-shadow: 2px 0px 10px 2px gray;
+  width:500px;
+}

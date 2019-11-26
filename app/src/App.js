@@ -63,7 +63,8 @@ export default class App extends React.Component {
     this.setState({ lastName: lastName });
   };
 
-  mySubmitHandler = () => {
+  mySubmitHandler = e => {
+    e.preventDefault();
     const url = "http://localhost:3000/login";
     axios
       .post(url, {
@@ -74,6 +75,10 @@ export default class App extends React.Component {
         localStorage.setItem("user", res.data.accessToken);
         this.setState({
           accessToken: localStorage.getItem("user")
+        });
+        toast.info("Welcome!", {
+          autoClose: 2000,
+          position: toast.POSITION.TOP_CENTER
         });
       })
       .catch(() => alert("Incorrect Email/Password!!"));
@@ -87,7 +92,8 @@ export default class App extends React.Component {
     this.setState({ accessToken: localStorage.getItem("user") });
   }
 
-  RegisterHandler = () => {
+  RegisterHandler = e => {
+    e.preventDefault();
     this.setState({
       redirect: true
     });

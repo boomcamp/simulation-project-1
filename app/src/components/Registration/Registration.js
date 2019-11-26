@@ -24,7 +24,7 @@ export default class Registration extends React.Component {
             Register
           </div>
 
-          <form onSubmit={this.props.RegisterHandler}>
+          <form onSubmit={e => this.props.RegisterHandler(e)}>
             <div className="input">
               <div className="input-addon">
                 <i>

@@ -23,7 +23,7 @@ export default class Login extends React.Component {
             Login
           </div>
 
-          <form onSubmit={this.props.mySubmitHandler}>
+          <form onSubmit={e => this.props.mySubmitHandler(e)}>
             <div className="input">
               <div className="input-addon">
                 <i>

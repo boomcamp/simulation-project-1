@@ -107,6 +107,21 @@ export default function Register(props) {
       ? setErrorUsername("This field is required")
       : setErrorUsername("");
 
+    if (
+      email === "" ||
+      password === "" ||
+      confirmPass === "" ||
+      firstname === "" ||
+      lastname === "" ||
+      username === ""
+    ) {
+      Swal.fire({
+        title: "Failed to signup!",
+        text: "Please complete the required information",
+        icon: "warning"
+      });
+    }
+
     if (email === "") {
       setErrorEmail("This field is required");
     } else {
@@ -165,14 +180,14 @@ export default function Register(props) {
                 console.log(e);
                 Swal.fire({
                   title: "Failed to Signup!",
-                  icon: "success"
+                  icon: "error"
                 });
               });
           })
           .catch(e => {
             Swal.fire({
               title: "Failed to Signup! Please try again",
-              icon: "success"
+              icon: "error"
             });
           });
       } else {

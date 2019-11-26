@@ -13,7 +13,7 @@ export default class Login extends Component {
       <Div>
         <Cont>
           <Span>Login</Span>
-          <form onSubmit={() => handleLogin()}>
+          <form onSubmit={e => handleLogin(e)}>
             <Div2>
               <TextField
                 required
@@ -42,7 +42,7 @@ export default class Login extends Component {
               onClick={() => handleRedirect()}
               style={{ textDecoration: "none" }}
             >
-              {"Don't have an account? Sign Up"}
+              {"Don't have an account? Sign Up here"}
             </Link>
           </Grid>
         </Cont>

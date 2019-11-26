@@ -28,8 +28,5 @@ const Span = styled.span`
   text-align: center;
   padding: 20px 0 30px 0;
 `;
-const Span2 = styled.span`
-  margin: 0px 0 20px 0;
-`;
 
-export { Div, Div2, Cont, Span, Span2, Cont2 };
+export { Div, Div2, Cont, Span, Cont2 };

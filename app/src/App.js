@@ -23,8 +23,7 @@ export default class App extends React.Component {
       redirect: false,
       error: false,
       errMsg: "",
-      errorEmail: false,
-      errorEmailMsg: ""
+      errorEmail: false
     };
   }
   componentDidMount() {
@@ -87,7 +86,8 @@ export default class App extends React.Component {
       this.setState({ confirmed: true });
     }
   };
-  handleLogin = () => {
+  handleLogin = e => {
+    e.preventDefault();
     const url = "http://localhost:3000/login";
     axios
       .post(url, {
@@ -106,10 +106,8 @@ export default class App extends React.Component {
       })
       .catch(() => toast.error("User not found!😢"));
   };
-  handleSignUp = () => {
-    this.setState({
-      redirect: true
-    });
+  handleSignUp = e => {
+    e.preventDefault();
     const url = "http://localhost:3000/register";
     axios
       .post(url, {
@@ -122,6 +120,9 @@ export default class App extends React.Component {
         active: this.state.active
       })
       .then(() => {
+        this.setState({
+          redirect: true
+        });
         toast.success("Account successfully created!😁", {
           position: toast.POSITION.TOP_CENTER
         });

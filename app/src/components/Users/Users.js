@@ -53,15 +53,9 @@ export default class Users extends Component {
           },
           render: rowData =>
             rowData.active === true || rowData.active === "true" ? (
-              <span>
-                <Img src={green} />
-                <span>Active</span>
-              </span>
+              <Img src={green} />
             ) : (
-              <span>
-                <Img src={red} />
-                <span>Inactive</span>
-              </span>
+              <Img src={red} />
             )
         }
       ],

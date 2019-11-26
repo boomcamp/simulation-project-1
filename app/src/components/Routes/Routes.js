@@ -19,7 +19,9 @@ export default class Routes extends React.Component {
       error,
       errorEmail,
       errorEmailMsg,
-      handleRedirect
+      handleRedirect,
+      showPassword,
+      handleShowPassword
     } = this.props;
     return (
       <Switch>
@@ -53,6 +55,8 @@ export default class Routes extends React.Component {
                 error={error}
                 errorEmail={errorEmail}
                 errorEmailMsg={errorEmailMsg}
+                showPassword={showPassword}
+                handleShowPassword={handleShowPassword}
               />
             )}
           />

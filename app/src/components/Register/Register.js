@@ -22,7 +22,7 @@ export default class Login extends Component {
       <Div>
         <Cont>
           <Span>Sign Up</Span>
-          <form onSubmit={() => handleSignUp()}>
+          <form onSubmit={e => handleSignUp(e)}>
             <Div2>
               <Grid container>
                 <Grid item sm={6}>
@@ -90,7 +90,7 @@ export default class Login extends Component {
           </form>
           <Grid container justify="flex-end" className="padding">
             <Link to="/" style={{ textDecoration: "none" }}>
-              {"Already have an account? Sign in"}
+              {"Already have an account? Sign in here"}
             </Link>
           </Grid>
         </Cont>

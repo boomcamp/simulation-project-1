@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -38,11 +38,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function LoginPage(props) {
+export default function LoginPage(props) {  
   const classes = useStyles();
   const [user, setUser] = useState({
     email: "",
-    password:""
+    password:"",
   })
 
   function handleInput(e){
@@ -52,9 +52,7 @@ export default function LoginPage(props) {
     })
   }
 
-  useEffect(() => {
-    console.log(user)
-  }, [user])
+  
   function login(user){
     axios
     .post('http://localhost:4000/login', {
@@ -63,17 +61,23 @@ export default function LoginPage(props) {
     })
     .then(results => {
       ls.set('token', results.data.accessToken) 
+      props.history.push('/manageuser')
+    }).catch(error => {
+      try {
+        alert(error.response.data);
+      } catch{
+        console.log(error);
+      }
     })
-    .then(()=>props.history.push('/manageuser'))
   }
-  return (
+  return ls.get('token') ? <Redirect to='/manageuser' />:(  
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={e => e.preventDefault()}>
           <TextField
             variant="outlined"
             margin="normal"

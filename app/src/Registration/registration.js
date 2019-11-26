@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import axios from "axios"
+import {Link} from "react-router-dom"
+import * as ls  from 'local-storage';
 import Button from "@material-ui/core/Button"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import TextField from "@material-ui/core/TextField"
-import Link from "@material-ui/core/Link"
+// import Link from "@material-ui/core/Link"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
@@ -34,8 +36,34 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Registration() {
+export default function Registration(props) {
   const classes = useStyles()
+  const [err, showErr] = useState({
+    userName: {
+      required: false
+    },
+    email:{
+      required: false
+    },
+    firstName: {
+      required: false
+    },
+    lastName: {
+      required: false
+    },
+    password: {
+      required: false
+    },
+    comfirmPassword: {
+      required: false
+    },
+    checkPass: {
+      required: false
+    },
+    required: {
+      required: false
+    }
+  })
   const [user, setUser] = useState({
     users: [],
     userName: "",
@@ -43,17 +71,29 @@ export default function Registration() {
     firstName: "",
     lastName: "",
     password: "",
-    plainPassword: "",
     comfirmPassword: "",
     checkPass: "",
+    required: "",
   })
+
+  React.useEffect(()=>{
+    console.log(user)
+  },[user])
 
   function requiredData(e) {
     if (e.target.value.length === 0) {
-      setUser({
-        ...user,
-        [e.target.name]: e.target.value,
-        required: "Please fill out"
+      showErr({
+        ...err,
+        [`${e.target.name}`]: {
+        required: true 
+        }
+      })
+    }else{
+      showErr({
+        ...err,
+        [`${e.target.name}`]: {
+          required: false
+        }
       })
     }
   }
@@ -65,7 +105,7 @@ export default function Registration() {
         comfirmPassword: e.target.value,
         checkPass: "Please re-enter password"
       })
-    } else if (e.target.value !== user.plainPassword) {
+    } else if (e.target.value !== user.password) {
       setUser({
         ...user,
         comfirmPassword: e.target.value,
@@ -75,27 +115,22 @@ export default function Registration() {
       setUser({ ...user, comfirmPassword: e.target.value, checkPass: "" })
     }
   }
-  // function handleCheckPass(e) {
-  //   console.log(e.target.value);
-  //   setUser({...user, plainPassword: e.target.value})
-  // }
-  // function signUp(){
-  //   axios
-  //   .post(`http://localhost:4000/user`, {
-  //   email: user.email,
-  //   firstName: user.firstName,
-  //   lastName: user.lastName,
-  //   plainPassword: user.plainPassword,
-  //   userName: user.userName,
-  //   password: user.password,
-  //   active: true,
-  //   }).then(res =>
-  //     console.log(res)
-  //     // setUser({
-  //     // users: [...user, users.res.data]
-  //   // })
-  //   )
-  // }
+ 
+  function signUp() {
+    axios
+      .post(`http://localhost:4000/register`, {
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: user.password,
+        username: user.userName,  
+        active: true
+      }).then(results => {
+        ls.set('token', results.data.accessToken)
+        props.history.push("/")
+      })
+
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -103,7 +138,7 @@ export default function Registration() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={signUp} className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -114,8 +149,14 @@ export default function Registration() {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                onBlur={e => requiredData(e)} 
+                error={err.firstName.required}
+                helperText={!err.firstName.required  ? ''  : "Required to fill out"}
                 value={user.firstName}
-                onChange={e => setUser({ ...user, firstName: e.target.value })}
+                onChange={e => {
+                  setUser({ ...user, firstName: e.target.value })
+                  requiredData(e)
+                }}
                 autoFocus
               />
             </Grid>
@@ -128,8 +169,14 @@ export default function Registration() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onBlur={e => requiredData(e)}
+                error={err.lastName.required}
+                helperText={!err.lastName.required ? ''  : "Required to fill out"}
                 value={user.lastName}
-                onChange={e => setUser({ ...user, lastName: e.target.value })}
+                onChange={e => {
+                  setUser({ ...user, lastName: e.target.value })
+                  requiredData(e)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -137,12 +184,19 @@ export default function Registration() {
                 variant="outlined"
                 required
                 fullWidth
+                type="email"
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onBlur={e => requiredData(e)} 
+                error={err.email.required}
+                helperText={!err.email.required  ? ''  : "Required to fill out"}
                 value={user.email}
-                onChange={e => setUser({ ...user, email: e.target.value })}
+                onChange={e => {
+                  setUser({ ...user, email: e.target.value })
+                  requiredData(e)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -150,12 +204,18 @@ export default function Registration() {
                 variant="outlined"
                 required
                 fullWidth
-                id="userName"
+                id="username"
                 label="Username"
                 name="userName"
                 autoComplete="userName"
-                value={user.userName}
-                onChange={e => setUser({ ...user, userName: e.target.value })}
+                onBlur={e => requiredData(e)} 
+                error={err.userName.required}
+                helperText={!err.userName.required  ? ''  : "Required to fill out"}
+                value={user.username}
+                onChange={e => {
+                  setUser({ ...user, username: e.target.value })
+                  requiredData(e)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -168,8 +228,14 @@ export default function Registration() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                value={user.plainPassword}
-                onChange={e => setUser({ ...user, plainPassword: e.target.value })}
+                onBlur={e => requiredData(e)} 
+                error={err.password.required}
+                helperText={!err.password.required  ? ''  : "Required to fill out"}
+                value={user.password}
+                onChange={e => {
+                  setUser({ ...user, password: e.target.value })
+                  requiredData(e)
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -190,16 +256,7 @@ export default function Registration() {
             </Grid>
           </Grid>
           <Button
-            // onClick={signUp}
-            disabled={
-              (user.checkPass ? true : false) ||
-              !user.userName ||
-              !user.email ||
-              !user.firstName ||
-              !user.lastName ||
-              !user.plainPassword ||
-              !user.confirmPassword
-             }
+            type="submit"
             fullWidth
             variant="contained"
             color="primary"
@@ -209,7 +266,7 @@ export default function Registration() {
           </Button>
           <Grid container justify="flex-start">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link to="/" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

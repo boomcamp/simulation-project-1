@@ -32,8 +32,8 @@ export default class Users extends Component {
     super();
     this.state = {
       columns: [
-        { title: "Email", field: "email", filtering: false },
         { title: "Username", field: "username", filtering: false },
+        { title: "Email", field: "email", filtering: false },
         {
           title: "Name",
           field: "firstName",
@@ -110,7 +110,7 @@ export default class Users extends Component {
           ? toast.info("Edit successful", {
               position: toast.POSITION.TOP_CENTER
             })
-          : toast("No changes were made", {
+          : toast.success("No changes were made", {
               position: toast.POSITION.TOP_CENTER
             });
       })

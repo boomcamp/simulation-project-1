@@ -104,7 +104,7 @@ export default class App extends React.Component {
           position: toast.POSITION.TOP_CENTER
         });
       })
-      .catch(() => toast.error("User not found!😢"));
+      .catch(() => toast.error("User not found!"));
   };
   handleSignUp = e => {
     e.preventDefault();
@@ -123,12 +123,12 @@ export default class App extends React.Component {
         this.setState({
           redirect: true
         });
-        toast.success("Account successfully created!😁", {
+        toast.info("Account successfully created!😁", {
           position: toast.POSITION.TOP_CENTER
         });
       })
       .catch(() =>
-        toast.error("Something went wrong.😢", {
+        toast.error("Email already exists.😢", {
           position: toast.POSITION.TOP_CENTER
         })
       );
@@ -138,7 +138,7 @@ export default class App extends React.Component {
       token: null
     });
     localStorage.clear();
-    toast.info("Bye bye! 👋😢", {
+    toast.info("Successfully logged out!", {
       position: toast.POSITION.TOP_CENTER
     });
   };

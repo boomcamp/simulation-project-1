@@ -148,7 +148,14 @@ export default function Register(props) {
     if (confirmPass === "") {
       setErrorConfirmPass("This field is required");
     } else {
-      if (confirmPass === password && password.length >= 8) {
+      if (
+        confirmPass === password &&
+        password.length >= 8 &&
+        email !== "" &&
+        username !== "" &&
+        firstname !== "" &&
+        lastname !== ""
+      ) {
         setErrorConfirmPass("");
         axios
           .post("http://localhost:3000/register", {

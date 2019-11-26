@@ -81,7 +81,7 @@ export default class App extends React.Component {
           position: toast.POSITION.TOP_CENTER
         });
       })
-      .catch(() => toast.error("Incorrect Email/Password!!"));
+      .catch(err => toast.error(err.response.data));
   };
 
   redirectHandler = () => {
@@ -109,9 +109,9 @@ export default class App extends React.Component {
         this.setState({
           redirect: true
         });
-        alert("Success!!");
+        toast.info("Success!!");
       })
-      .catch(() => toast.error("Email already exists!"));
+      .catch(err => toast.error(err.response.data));
   };
 
   handleLogout = () => {

@@ -11,16 +11,17 @@ export default class Users extends React.Component {
     this.state = {
       columns: [
         {
-          title: "Username",
-          field: "username",
-          filtering: false
-        },
-        {
           title: "Email",
           field: "email",
           filtering: false,
           initialEditValue: "initial edit value"
         },
+        {
+          title: "Username",
+          field: "username",
+          filtering: false
+        },
+
         {
           title: "First Name",
           field: "firstName",

@@ -11,18 +11,28 @@ export default class Filter extends Component {
   }
   handleChange(e) {
     var y = [];
+    var data;
+    // if (e === "all") {
+    //   data = "http://localhost:3000/users";
+    // }else{
+    //   data = "http://localhost:3000/users";
+    // }
     axios
       .get(`http://localhost:3000/users`, {
         headers: { Authorization: `Bearer ${localStorage.token}` }
       })
       .then(response => {
         response.data.map(item => {
-          var itemActive =
-            typeof item.active === "boolean"
-              ? item.active.toString()
-              : item.active;
-          if (itemActive === e) {
+          if (e === "all") {
             y.push(item);
+          } else {
+            var itemActive =
+              typeof item.active === "boolean"
+                ? item.active.toString()
+                : item.active;
+            if (itemActive === e) {
+              y.push(item);
+            }
           }
         });
 
@@ -38,7 +48,7 @@ export default class Filter extends Component {
           style={{ width: 200 }}
           onChange={e => this.handleChange(e.target.value)}
         >
-          <option value="">All</option>
+          <option value="all">All</option>
           <option value="true">Active</option>
           <option value="false">Inactive</option>
         </select>

@@ -30,7 +30,7 @@ class Login extends React.Component {
                 icon="user"
                 label="Your email"
                 group
-                type="email"
+                type="text"
                 onChange={e => handleOnChange(e.target.value, "email")}
               />
               <MDBInput

@@ -94,7 +94,13 @@ export default class App extends Component {
               });
               toast(`Hello There! ${this.state.email}`);
             })
-            .catch(() => toast.error("User Not Found"))
+            .catch(error => {
+              try {
+                toast.error(error.response.data);
+              } catch {
+                console.log(error);
+              }
+            })
       : toast.error("Fill all the Blanks");
   };
 
@@ -115,8 +121,12 @@ export default class App extends Component {
         this.setState({ regSuccess: true });
         toast.success("Account has been Successfully Added!");
       })
-      .catch(() => {
-        toast.error("Error in Adding Account!");
+      .catch(error => {
+        try {
+          toast.error(error.response.data);
+        } catch {
+          console.log(error);
+        }
       });
   };
 

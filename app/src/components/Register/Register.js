@@ -78,7 +78,13 @@ export default class Login extends Component {
                 onChange={e => handleOnChange(e.target.value)}
               />
             </Div2>
-            <Button fullWidth variant="contained" color="primary" type="submit">
+            <Button
+              disabled={confirmed || errorEmail || error}
+              fullWidth
+              variant="contained"
+              color="primary"
+              type="submit"
+            >
               SignUp
             </Button>
           </form>

@@ -32,5 +32,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .MuiTableRow-root:hover {
-  background: #dedede !important;
+  background: #337ab7;
+  color: white;
+}
+tbody.MuiTableBody-root tr.MuiTableRow-root:first-of-type {
+  height: 10px;
+  position: absolute;
+  top: -16px;
+  right: 311px;
+}
+div.MuiSelect-selectMenu {
+  width: 125px;
+}
+tbody.MuiTableBody-root tr.MuiTableRow-root:first-of-type:hover {
+  background-color: white !important;
 }

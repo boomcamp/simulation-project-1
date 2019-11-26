@@ -37,7 +37,7 @@ export default class App extends React.Component {
       this.setState({
         email: text
       });
-      var re = /^(([^<>()[\]\\.,;:\s@"]+(\[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var re = /^(([^<>()[\]\\,;:\s@"]+(\[^<>()\[\]\\,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       re.test(text.toLowerCase())
         ? this.setState({ errorEmail: false, errorEmailMsg: "" })
         : this.setState({
@@ -107,32 +107,30 @@ export default class App extends React.Component {
       .catch(() => toast.error("User not found!😢"));
   };
   handleSignUp = () => {
-    if (!this.state.confirmed) {
-      const url = "http://localhost:3000/register";
-      axios
-        .post(url, {
-          email: this.state.email,
-          password: this.state.password,
-          plainPassword: this.state.password,
-          username: this.state.username,
-          firstName: this.state.firstname,
-          lastName: this.state.lastname,
-          active: this.state.active
+    this.setState({
+      redirect: true
+    });
+    const url = "http://localhost:3000/register";
+    axios
+      .post(url, {
+        email: this.state.email,
+        password: this.state.password,
+        plainPassword: this.state.password,
+        username: this.state.username,
+        firstName: this.state.firstname,
+        lastName: this.state.lastname,
+        active: this.state.active
+      })
+      .then(() => {
+        toast.success("Account successfully created!😁", {
+          position: toast.POSITION.TOP_CENTER
+        });
+      })
+      .catch(() =>
+        toast.error("Something went wrong.😢", {
+          position: toast.POSITION.TOP_CENTER
         })
-        .then(() => {
-          this.setState({
-            redirect: true
-          });
-          toast.success("Account successfully created!😁", {
-            position: toast.POSITION.TOP_CENTER
-          });
-        })
-        .catch(() =>
-          toast.error("Something went wrong.😢", {
-            position: toast.POSITION.TOP_CENTER
-          })
-        );
-    }
+      );
   };
   handleLogOut = () => {
     this.setState({
@@ -151,7 +149,7 @@ export default class App extends React.Component {
   render() {
     return (
       <HashRouter>
-        <ToastContainer autoClose={10000} />
+        <ToastContainer autoClose={3000} />
         <Routes
           token={this.state.token}
           handleOnChange={this.handleOnChange}

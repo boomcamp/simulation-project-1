@@ -1,4 +1,6 @@
 import React,{useEffect, useState} from 'react'
+import {Link, Redirect} from 'react-router-dom'
+
 
 import UserTable3 from './UserTable3';
 import GettingData from '../API/GettingData';
@@ -11,7 +13,12 @@ export default function UserManagement() {
         setTimeout(()=>{
             setUserName(localStorage.getItem('Name'));
         },1000)
+        
     },[])
+
+    if(!localStorage.getItem('Token')){
+        return <Redirect to='/'/>
+    }
 
     return (
         <section>
@@ -23,11 +30,11 @@ export default function UserManagement() {
 
                 </div>
 
-                <div className='user-header-container'>
+                {/* <div className='user-header-container'> */}
 
     <div> Hello,'{userName}' </div>
-                    <div> Activity Log </div>               
-                </div>
+                    {/* <div> Activity Log </div>                */}
+                {/* </div> */}
             </div>
 
             <div className='TableContainer'>

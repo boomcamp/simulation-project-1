@@ -11,7 +11,10 @@ export class App extends Component {
         <div style={{width:'100%',height:'100vh'}}>
             <RouterRef />
         </div>
+
+        <div className='c-low-cut'/>
       </Router>
+
     )
   }
 }

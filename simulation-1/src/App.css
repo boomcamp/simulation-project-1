@@ -2,6 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.c-low-cut{
+  height: 20%;
+  background-color: #59C6FF;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
 }
 
 /* LOGIN COMPONENT CSS START*/
@@ -16,7 +26,17 @@
   margin: 0 auto;
   position: relative;
   top: 25%;
+  background-color: white;
+  border: rgb(233, 233, 233) 1px solid;
+  border-radius: 14px;
+  padding: 20px 10px;
 }
+
+.c-login-container h3, .c-signup-container p{
+  font-weight: 400;
+  color: grey;
+}
+
 
 .c-inputs-container{
   display: flex;
@@ -32,15 +52,44 @@
   width: 100%;
 }
 
+.c-signup-button{
+  color: #59C6FF;
+  margin: 7px;
+  text-decoration: none;
+  padding: 3px;
+}
+
+.c-signup-button:hover{
+  border-bottom: 2px solid #59C6FF;
+  padding-bottom: 1px;
+}
+
+.c-create-account-container{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  /* border: 1px solid red; */
+  width: 100%;
+}
+
+.c-create-account-container p{
+  color: grey;
+}
+
 .c-login-button{
-  background: rgb(184, 184, 184);
+  background: #59C6FF!important;
   border: none;
   cursor: pointer;
-  text-decoration: none;
+  /* text-decoration: none; */
   color: white;
   display: flex;
   justify-content: center;
-  /* margin: 0 auto; */
+  width: 263px;
+  height: 48px;
+  padding: 18.500px 14px;
+  margin: 12px!important;
+  box-shadow: 1px 1px 2px 1px #e0e0e0!important;
 }
 
 /* LOGIN COMPONENT CSS END*/
@@ -69,7 +118,8 @@
   height: 100px;
   justify-content: space-evenly;
   align-items: center;
-  border-bottom: rgb(219, 219, 219) solid 0.5px;
+  /* border-bottom: rgb(219, 219, 219) solid 0.5px; */
+  box-shadow: -8px -2px 4px 1px #888888
 }
 
 .user-header-container{
@@ -80,7 +130,8 @@
 }
 
 .TableContainer{
-  max-width: 900px;
+  width: 90%;
+  /* max-width: 900px; */
   margin: 0 auto;
   margin-top: 50px;
 }

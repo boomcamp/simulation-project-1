@@ -109,18 +109,6 @@ function UsersTable({enqueueSnackbar}) {
                 columns={state.columns}
                 data={state.data}
                 editable={{
-                    onRowAdd: newData => 
-                        new Promise(resolve => {
-                            console.log(newData)
-                            setTimeout(() => {
-                            resolve();
-                            setState(prevState => {
-                                const data = [...prevState.data];
-                                data.push(newData);
-                                return { ...prevState, data };
-                            });
-                            }, 600);
-                        }),
                     onRowUpdate: (newData, oldData) =>
                         new Promise(resolve => {
                         setTimeout(() => {    

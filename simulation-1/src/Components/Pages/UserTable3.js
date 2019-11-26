@@ -45,8 +45,7 @@ export default function UserTable3(props) {
           {title: 'Last Name', field: 'lastname', filtering: false },
           {title: 'Email', field: 'email', filtering: false},
           {title: 'Active', field: 'active', 
-            lookup : {true:'Active',
-                      false:'inActive'},
+            lookup : {true:'Active', false:'Inactive'},
             cellStyle : {maxWidth: '10px'},
             render: rowData => {
 
@@ -59,7 +58,7 @@ export default function UserTable3(props) {
             ,editComponent: props =>{
                 return (
                   <Checkbox 
-                  icon={<RadioButtonUncheckedIcon style={{color:'grey'}}/>} checkedIcon={<RadioButtonCheckedRoundedIcon style={{color:'rgb(140, 255, 87)'}} />} value={1} 
+                  icon={<RadioButtonUncheckedIcon style={{color:'red'}}/>} checkedIcon={<RadioButtonCheckedRoundedIcon style={{color:'rgb(140, 255, 87)'}} />} value={1} 
 
                   checked={props.rowData.active} 
 

@@ -38,7 +38,7 @@ export default function Login() {
 
         })
         .catch(error=>{
-            alert('User account not avaible,');
+            alert('User account not available, try again or register');
             e.preventDefault();
         })
         e.preventDefault();

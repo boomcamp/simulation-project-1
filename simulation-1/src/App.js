@@ -8,6 +8,8 @@ export class App extends Component {
   render() {
     return (
       <Router>  
+        
+        <div className='overlay-white-ish'/>
 
         <div>
             <RouterRef />

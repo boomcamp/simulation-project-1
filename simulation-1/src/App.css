@@ -140,7 +140,7 @@
 
 .TableContainer{
   width: 90%;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin:  0 auto;
   margin-top: 45px;
   padding-left: 30px;

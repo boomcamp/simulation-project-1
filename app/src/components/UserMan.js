@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppBar, Container, Toolbar, Typography, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
-import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 
@@ -20,9 +20,6 @@ const useStyles = {
     logout: {
         color: "#fff"
     },
-    table: {
-        width: "100%"
-    }
 };
 
 class UserMan extends Component {
@@ -42,18 +39,18 @@ class UserMan extends Component {
                             <CheckRoundedIcon />
                         ),
                         false: (
-                            <CloseRoundedIcon />
+                            <RemoveRoundedIcon />
                         )
                     }
-                }
+                },
             ],
             localStorage: localStorage.getItem('token'),
-            users: []
+            users: [],
         }
     }
 
     componentDidMount = () => {
-        if (localStorage) {
+        if (this.state.localStorage) {
             axios({
                 method: 'get',
                 url: `http://localhost:4000/users`,
@@ -68,10 +65,6 @@ class UserMan extends Component {
         } else {
             this.props.history.push("/login")
         }
-    }
-
-    handleRefresh = () => {
-
     }
 
     logOut = (e) => {
@@ -98,58 +91,39 @@ class UserMan extends Component {
                     title="Users"
                     columns={this.state.columns}
                     data={this.state.users}
+                    options={{ filtering: true }}
                     editable={{
-                        onRowAdd: newData =>
-                            new Promise(resolve => {
-                                setTimeout(() => {
-                                    resolve();
-                                    this.setState(prevState => {
-                                        const data = [...prevState.users];
-                                        data.push(newData);
-                                        return { ...prevState, data };
-                                    });
-                                }, 600);
-                            }),
                         onRowUpdate: (newData, oldData) =>
                             new Promise(resolve => {
                                 setTimeout(() => {
                                     resolve();
                                     if (oldData) {
                                         this.setState(prevState => {
-                                            const data = [...prevState.users];
-                                            data[data.indexOf(oldData)] = newData;
-                                            return { ...prevState, data };
+                                            const users = [...prevState.users];
+                                            users[users.indexOf(oldData)] = newData;
+                                            return { ...prevState, users };
                                         });
                                     }
+                                    console.log(oldData)
                                 }, 600);
-                                axios
-                                    .patch(`http://localhost:4000/users/${newData.id}`,
-                                        {
-                                            email: newData.email,
-                                            username: newData.username,
-                                            firstName: newData.firstName,
-                                            lastName: newData.lastName,
-                                            active: newData.active
-                                        },
-                                        {
-                                            headers: {
-                                                Authorization: `Bearer` + localStorage
-                                            }
-                                        }
-                                    )
-                                    .then(e => console.log(e))
-                            }),
-                        onRowDelete: oldData =>
-                            new Promise(resolve => {
-                                setTimeout(() => {
-                                    resolve();
-                                    this.setState(prevState => {
-                                        const data = [...prevState.data];
-                                        data.splice(data.indexOf(oldData), 1);
-                                        return { ...prevState, data };
-                                    });
-                                }, 600);
-                            }),
+
+                                axios({
+                                    method: 'patch',
+                                    url: `/users/${newData.id}`,
+                                    data: {
+                                        firstName: newData.firstName,
+                                        lastName: newData.lastName,
+                                        username: newData.username,
+                                        active: newData.active,
+                                        email: newData.email
+                                    },
+                                    headers: {
+                                        Authorization: `Bearer ${this.state.localStorage}`
+                                    }
+                                })
+                                    .then(e => console.log(e.data))
+                                    .catch(err => console.log(err))
+                            })
                     }}
                 />
             </div >

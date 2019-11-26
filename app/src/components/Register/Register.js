@@ -63,10 +63,15 @@ const useStyles = (theme => ({
     },
     error50: {
         display: "flex",
-        margin: "auto"
+        marginLeft: 10
     },
     error100: {
-        display: "flex"
+        display: "flex",
+        marginLeft: 10
+    },
+    error50margin: {
+        display: "flex",
+        marginLeft: "16%"
     }
 }));
 
@@ -94,8 +99,6 @@ class Register extends Component {
         }
     }
 
-
-
     handleChange = e => {
         this.setState({
             data: {
@@ -107,7 +110,6 @@ class Register extends Component {
                 [`${e.target.name}err`]: this.validate(e.target.name, e.target.value)
             }
         });
-
         console.log(this.state.data)
     }
 
@@ -121,7 +123,7 @@ class Register extends Component {
     }
 
     validate = (getName, getValue) => {
-        var passregex = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g;
+        var passregex = (/^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g);
         let data = '';
         if (getName === 'firstName') getValue.length > 1 ? data = "" : data = "firstname should be more than 2 character*"
         if (getName === 'lastName') getValue.length > 1 ? data = "" : data = "lastname should be more than 2 character*"
@@ -198,7 +200,10 @@ class Register extends Component {
                                 </div>
                                 <div className={classes.error50}>
                                     <div className={classes.errormsg}>{this.state.dataErr.firstNameerr}</div>
-                                    <div className={classes.errormsg}>{this.state.dataErr.lastNameerr}</div>
+
+                                    <div className={classes.error50margin}>
+                                        <div className={classes.errormsg}>{this.state.dataErr.lastNameerr}</div>
+                                    </div>
                                 </div>
                                 <TextField
                                     required
@@ -212,7 +217,9 @@ class Register extends Component {
                                     value={username}
                                     onChange={e => this.handleChange(e)}
                                 />
-                                <div className={classes.errormsg}>{this.state.dataErr.usernameerr}</div>
+                                <div className={classes.error100}>
+                                    <div className={classes.errormsg}>{this.state.dataErr.usernameerr}</div>
+                                </div>
                                 <TextField
                                     required
                                     id="email"
@@ -225,34 +232,30 @@ class Register extends Component {
                                     value={email}
                                     onChange={e => this.handleChange(e)}
                                 />
-                                <div>
-                                    <div className={classes.errormsg}>{this.state.dataErr.emailerr}</div>
-                                    <div className={classes.name}>
-
-                                        <TextField
-                                            required
-                                            id="password"
-                                            className={classes.textField}
-                                            label="Password"
-                                            margin="normal"
-                                            variant="outlined"
-                                            name="password"
-                                            type="password"
-                                            value={password}
-                                            onChange={e => this.handleChange(e)}
-                                        />
-                                        <TextField
-                                            id="password2"
-                                            className={classes.textField}
-                                            label="Retype Password"
-                                            margin="normal"
-                                            variant="outlined"
-                                            name="password2"
-                                            type="password"
-                                            value={password2}
-                                            onChange={e => this.handleChangeEer(e)}
-                                        />
-                                    </div>
+                                <div className={classes.name}>
+                                    <TextField
+                                        required
+                                        id="password"
+                                        className={classes.textField}
+                                        label="Password"
+                                        margin="normal"
+                                        variant="outlined"
+                                        name="password"
+                                        type="password"
+                                        value={password}
+                                        onChange={e => this.handleChange(e)}
+                                    />
+                                    <TextField
+                                        id="password2"
+                                        className={classes.textField}
+                                        label="Retype Password"
+                                        margin="normal"
+                                        variant="outlined"
+                                        name="password2"
+                                        type="password"
+                                        value={password2}
+                                        onChange={e => this.handleChange(e)}
+                                    />
                                 </div>
                                 <div className={classes.error50}>
                                     <div className={classes.errormsg}>{this.state.dataErr.passworderr}</div>

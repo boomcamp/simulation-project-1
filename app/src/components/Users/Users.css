@@ -1,0 +1,106 @@
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v48/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2)
+    format("woff2");
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: #313641;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #313641;
+  padding: 20px 10px;
+}
+
+.header p {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.handleLogout {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+  margin-top: 18px;
+}
+
+.header p.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+
+.container {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.header-right {
+  float: right;
+}
+
+tbody.MuiTableBody-root tr.MuiTableRow-root:first-of-type {
+  height: 10px;
+  position: absolute;
+  top: -15px;
+  right: 311px;
+}
+div.MuiSelect-selectMenu {
+  width: 125px;
+}
+
+img {
+  height: 12px;
+  margin: 0 5px 0 0;
+}
+
+span {
+  font-weight: bold;
+}
+
+.sTatus {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}

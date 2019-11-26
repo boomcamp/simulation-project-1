@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {RSignUp} from '../API/GettingData';
 
 
 export default function SignUp() {
@@ -24,22 +25,26 @@ export default function SignUp() {
     const [repassword, setRePassword] = useState('');
 
     useEffect(() => {
+
         // custom rule will have name 'isPasswordMatch'
-        // ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
-        //     if (value !== userData.password) {
-        //         return false;
-        //     }
-        //     return true;
-        // });
+        ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
 
-    }, [])
+            if (value !== userData.password) {
+                return false;
+            }
 
-    useEffect(() => {
-        return () => {
-            // remove rule when it is not needed
-            ValidatorForm.removeValidationRule('isPasswordMatch');
-        }
-    }, []);
+            return true;
+        });
+        
+        ValidatorForm.addValidationRule('lengthText', (value) => {
+
+            if (value.length < 6 && value.length !== 0) {
+                return false;
+            }
+
+            return true;
+        });
+    })
 
     function eventChecker(e){
 
@@ -66,15 +71,7 @@ export default function SignUp() {
             return null;
         }
 
-        axios.post('http://localhost:3000/register',{
-                "email" :  userData.email,
-                "password" : userData.password.toString(),
-                "plainPassword" : userData.password.toString(),
-                "username": userData.username,
-                "firstName": userData.firstName,
-                "lastName": userData.lastName,
-                "active": true
-            }).then(res=>{
+        RSignUp().then(res=>{
 
             console.log(res.data.accessToken);
             //store
@@ -119,7 +116,7 @@ export default function SignUp() {
                     // defaultValue='Email'
                     margin='normal'
                     variant='outlined'
-                    className='c-login-inputs' 
+                    className='c-login-inputs' asdasdasdasadasdasd12312312312
                     onChange={eventChecker}
                     name='username'
                     validators={['required']}
@@ -138,7 +135,6 @@ export default function SignUp() {
                     onChange={eventChecker}
                     name='firstName'
                     validators={['required', 'matchRegexp:^[a-zA-Z]*$']}
-
                     errorMessages={['this field is required', 'Kindly input proper text']}
                     value={userData.firstName}
                 />
@@ -173,38 +169,38 @@ export default function SignUp() {
                     name='email'
                     validators={['required', 'isEmail']}
                     errorMessages={['this field is required', 'Invalid email format']}
-
                     value={userData.email}
                 />
 
-                <TextField
+                <TextValidator
                     required
                     id='outlined-required'
                     label='Password'
-                    type="password"
+                    type='password'
+                    // defaultValue='Email'
                     margin='normal'
                     variant='outlined'
                     className='c-login-inputs' 
                     onChange={eventChecker}
                     name='password'
-                    validators={['required']}
-                    errorMessages={['password mismatch', 'this field is required']}
+                    validators={['required', 'lengthText']}
+                    errorMessages={['this field is required', 'password too short']}
                     value={userData.password}
                 />
 
-                <TextField
+                <TextValidator
                     required
                     id='outlined-required'
                     label='Confirm Password'
-                    type="password"
+                    type='password'
+                    // defaultValue='Email'
                     margin='normal'
                     variant='outlined'
                     className='c-login-inputs' 
                     onChange={eventChecker}
                     name='repassword'
-
-                    validators={['isPasswordMatch', 'required']}
-                    errorMessages={['password mismatch', 'this field is required']}
+                    validators={['required', 'isPasswordMatch']}
+                    errorMessages={['this field is required', 'Password dont Match']}
                     value={repassword}
                 />
 

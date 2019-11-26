@@ -6,8 +6,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
- 
 
+import GettingData,{LoggingIn, StoreData} from '../API/GettingData';
+ 
 export default function Login() {
 
     const [userData, setUserData] = useState({
@@ -27,23 +28,14 @@ export default function Login() {
 
         console.log('loggin in');
 
-        axios.post('http://localhost:3000/login',
-            {
-                "email" : userData.email,
-                "password" : userData.password
-            }
-        )
+        LoggingIn(userData)
         .then(res=>{
             localStorage.setItem('Token', res.data.accessToken);
             setToken(res.data.accessToken)
+
             //Store users data
-            axios.get(`http://localhost:3000/users?q=${userData.email}`,{ 
-                headers: { Authorization: `Bearer ${localStorage.getItem('Token')}` } 
-            }).then(res=>{
-                localStorage.setItem('Name', res.data[0].firstName)
-            }).catch(e=>{
-                console.log(e);
-            })
+            StoreData(userData);
+
         })
         .catch(error=>{
             alert('User account not avaible,');

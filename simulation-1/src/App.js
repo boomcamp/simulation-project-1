@@ -7,12 +7,12 @@ import Login from './Components/Pages/Login';
 export class App extends Component {
   render() {
     return (
-      <Router>
+      <Router>  
+
         <div style={{width:'100%',height:'100vh'}}>
             <RouterRef />
         </div>
 
-        <div className='c-low-cut'/>
       </Router>
 
     )

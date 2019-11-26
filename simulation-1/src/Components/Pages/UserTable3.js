@@ -17,17 +17,21 @@ function DeleteData(data){
 }
 
 function EditData(newdata, olddata){
+
+  console.log("old data : " + olddata.active)
+  
   axios.put(`http://localhost:3000/users/${olddata.id}`,{
     "username" : newdata.username,
     "firstName" : newdata.firstname,
     "lastName" : newdata.lastname,
     "email" : newdata.email,
-    "active" : newdata.active,
+    "active" : 'false',
     "password" : olddata.password
   },{ 
     
     headers: { Authorization: `Bearer ${localStorage.getItem('Token')}` } 
-    })
+
+  })
   .then(data=>console.log(data))
   .catch(e=>console.log(e));
 }
@@ -57,7 +61,10 @@ export default function UserTable3(props) {
                   checked={props.rowData.active==='true'?true:false} 
 
                   onChange={(e)=>{
-                    props.onChange(e.target.checked ? 'true' : 'false' )
+                    console.log("item is : " + e.target.checked)
+
+                    props.onChange(e.target.checked ? 'true' : 'false' );
+
                 }}/>
               )
             }
@@ -148,6 +155,7 @@ export default function UserTable3(props) {
               }
             }, 600);
           }).then(EditData(newData,oldData)),
+
         onRowDelete: oldData =>
           new Promise(resolve => {
             setTimeout(() => {

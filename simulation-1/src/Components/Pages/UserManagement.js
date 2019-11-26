@@ -5,6 +5,9 @@ import {Link, Redirect} from 'react-router-dom'
 import UserTable3 from './UserTable3';
 import GettingData from '../API/GettingData';
 
+import DashBoard from './Dashboard';
+
+
 export default function UserManagement() {
 
     const [userName, setUserName] = useState('');
@@ -22,23 +25,10 @@ export default function UserManagement() {
 
     return (
         <section>
-            <div className='HeaderContainer'>
-                <div className='logo-container'>
-                    <img className='logo'/>
-
-                    LOGO
-
-                </div>
-
-                {/* <div className='user-header-container'> */}
-
-    <div> Hello,'{userName}' </div>
-                    {/* <div> Activity Log </div>                */}
-                {/* </div> */}
-            </div>
-
+            
+            <DashBoard />
             <div className='TableContainer'>
-                <UserTable3/>
+                <UserTable3 />
             </div>
         </section>
     )

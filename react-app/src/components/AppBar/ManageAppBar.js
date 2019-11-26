@@ -14,6 +14,9 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-end"
+  },
+  white: {
+    color: "white"
   }
 }));
 
@@ -49,9 +52,7 @@ export default function ButtonAppBar() {
             to="/register"
             style={{ textDecoration: "none", color: "white" }}
           >
-            <Button color="inherit" onClick={logout}>
-              Logout
-            </Button>
+            <Button onClick={logout}>Logout</Button>
           </NavLink>
         </Toolbar>
       </AppBar>

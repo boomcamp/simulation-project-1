@@ -14,7 +14,6 @@ function App() {
         {redirect || localStorage.getItem("Token") ? (
           <Redirect to="/manage" />
         ) : null}
-
         <Switch>
           <Route
             exact

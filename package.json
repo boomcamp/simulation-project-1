@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/json-server db.json -m ./node_modules/json-server-auth -r routes.json",
+    "start": "./node_modules/.bin/json-server db.json -m ./node_modules/json-server-auth -r routes.json -p 4007",
     "init:db": "./.bin/populateUsers.sh"
   },
   "repository": {
@@ -19,9 +19,12 @@
   },
   "homepage": "https://github.com/boomcamp/simulation-project-1#readme",
   "dependencies": {
+    "@material-ui/icons": "^4.5.1",
+    "antd": "^3.25.3",
     "faker": "^4.1.0",
     "json-server": "^0.15.1",
     "json-server-auth": "^1.2.1",
+    "material-table": "^1.54.1",
     "request": "^2.88.0"
   },
   "devDependencies": {}

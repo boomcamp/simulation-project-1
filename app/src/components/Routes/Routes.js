@@ -19,7 +19,7 @@ export default class Routes extends React.Component {
       error,
       errorEmail,
       errorEmailMsg,
-      handleRedirect,
+      clearState,
       showPassword,
       handleShowPassword
     } = this.props;
@@ -32,7 +32,7 @@ export default class Routes extends React.Component {
               <Login
                 handleOnChange={handleOnChange}
                 handleLogin={handleLogin}
-                handleRedirect={handleRedirect}
+                clearState={clearState}
               />
             ) : (
               <Users handleLogOut={handleLogOut} token={token} />
@@ -57,6 +57,7 @@ export default class Routes extends React.Component {
                 errorEmailMsg={errorEmailMsg}
                 showPassword={showPassword}
                 handleShowPassword={handleShowPassword}
+                clearState={clearState}
               />
             )}
           />

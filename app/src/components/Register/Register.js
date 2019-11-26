@@ -15,7 +15,8 @@ export default class Login extends Component {
       error,
       errMsg,
       errorEmail,
-      errorEmailMsg
+      errorEmailMsg,
+      clearState
     } = this.props;
 
     return (
@@ -89,7 +90,11 @@ export default class Login extends Component {
             </Button>
           </form>
           <Grid container justify="flex-end" className="padding">
-            <Link to="/" style={{ textDecoration: "none" }}>
+            <Link
+              to="/"
+              onClick={() => clearState()}
+              style={{ textDecoration: "none" }}
+            >
               {"Already have an account? Sign in here"}
             </Link>
           </Grid>

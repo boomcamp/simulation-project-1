@@ -8,7 +8,7 @@ import { Div, Cont, Span, Div2 } from "../Style/Style";
 
 export default class Login extends Component {
   render() {
-    const { handleLogin, handleOnChange, handleRedirect } = this.props;
+    const { handleLogin, handleOnChange, clearState } = this.props;
     return (
       <Div>
         <Cont>
@@ -39,7 +39,7 @@ export default class Login extends Component {
           <Grid container justify="flex-end" className="padding">
             <Link
               to="/register"
-              onClick={() => handleRedirect()}
+              onClick={() => clearState()}
               style={{ textDecoration: "none" }}
             >
               {"Don't have an account? Sign Up here"}

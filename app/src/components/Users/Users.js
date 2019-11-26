@@ -114,7 +114,7 @@ export default class Users extends Component {
               position: toast.POSITION.TOP_CENTER
             });
       })
-      .catch(() => toast.error("Something went wrong!"), {
+      .catch(err => toast.error(err.response.data), {
         position: toast.POSITION.TOP_CENTER
       });
   };
@@ -128,8 +128,8 @@ export default class Users extends Component {
           position: toast.POSITION.TOP_CENTER
         });
       })
-      .catch(() =>
-        toast.error("Something went wrong!", {
+      .catch(err =>
+        toast.error(err.response.data, {
           position: toast.POSITION.TOP_CENTER
         })
       );

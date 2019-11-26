@@ -104,7 +104,11 @@ export default class App extends React.Component {
           position: toast.POSITION.TOP_CENTER
         });
       })
-      .catch(() => toast.error("User not found!"));
+      .catch(err =>
+        toast.error(err.response.data, {
+          position: toast.POSITION.TOP_CENTER
+        })
+      );
   };
   handleSignUp = e => {
     e.preventDefault();
@@ -127,8 +131,8 @@ export default class App extends React.Component {
           position: toast.POSITION.TOP_CENTER
         });
       })
-      .catch(() =>
-        toast.error("Email already exists.😢", {
+      .catch(err =>
+        toast.error(err.response.data, {
           position: toast.POSITION.TOP_CENTER
         })
       );
@@ -142,9 +146,21 @@ export default class App extends React.Component {
       position: toast.POSITION.TOP_CENTER
     });
   };
-  handleRedirect = () => {
+  clearState = () => {
     this.setState({
-      redirect: false
+      email: "",
+      password: "",
+      firstname: "",
+      lastname: "",
+      username: "",
+      active: true,
+      token: null,
+      users: [],
+      confirmed: false,
+      redirect: false,
+      error: false,
+      errMsg: "",
+      errorEmail: false
     });
   };
   render() {
@@ -160,7 +176,7 @@ export default class App extends React.Component {
           confirmed={this.state.confirmed}
           handleConfirmPassword={this.handleConfirmPassword}
           redirect={this.state.redirect}
-          handleRedirect={this.handleRedirect}
+          clearState={this.clearState}
           errMsg={this.state.errMsg}
           error={this.state.error}
           errorEmail={this.state.errorEmail}

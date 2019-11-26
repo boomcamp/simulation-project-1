@@ -66,48 +66,13 @@ export default function SignIn(props) {
   };
 
   function validate(e) {
-    // Login
-    axios
-      .post("http://localhost:3000/login", {
-        email: email,
-        password: password
-      })
-      .then(token => {
-        localStorage.setItem("Token", token.data.accessToken);
-        setToken(token.data.accessToken);
-        axios
-          .get(`http://localhost:3000/users?q=${email}`, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("Token")}`
-            }
-          })
-          .then(res => {
-            localStorage.setItem("Name", res.data[0].firstName);
-            {
-              Swal.fire({
-                icon: "success",
-                title: "Logged In Successfully!"
-              }).then(result => {
-                props.setRedirect(true);
-              });
-            }
-          })
-          .catch(e => {
-            Swal.fire({
-              icon: "error",
-              title: "Failed to Login"
-            });
-          });
-      })
-      .catch(e => {
-        Swal.fire({
-          icon: "error",
-          title: "Failed to Login",
-          text: "Please check your email and password"
-        });
+    if (email === "" || password === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Failed to Login",
+        text: "Please complete the required information"
       });
-    // Login End
-
+    }
     if (email === "") {
       setemailError("This field is required");
     } else {
@@ -119,9 +84,53 @@ export default function SignIn(props) {
         setemailError("");
       } else setemailError("Invalid Email Format");
     }
-    password === ""
-      ? setPasswordErr("This field is required")
-      : setPasswordErr("");
+    if (password === "") {
+      setPasswordErr("This field is required");
+    } else {
+      // Login
+      axios
+        .post("http://localhost:3000/login", {
+          email: email,
+          password: password
+        })
+        .then(token => {
+          localStorage.setItem("Token", token.data.accessToken);
+          setToken(token.data.accessToken);
+          axios
+            .get(`http://localhost:3000/users?q=${email}`, {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("Token")}`
+              }
+            })
+            .then(res => {
+              localStorage.setItem("Name", res.data[0].firstName);
+              {
+                Swal.fire({
+                  icon: "success",
+                  title: "Logged In Successfully!"
+                }).then(result => {
+                  props.setRedirect(true);
+                });
+              }
+            })
+            .catch(e => {
+              setPasswordErr("Email and Password did not match");
+              Swal.fire({
+                icon: "error",
+                title: "Failed to Login"
+              });
+            });
+        })
+        .catch(e => {
+          setPasswordErr("Email and Password did not match");
+          Swal.fire({
+            icon: "error",
+            title: "Failed to Login",
+            text: "Please check your email and password"
+          });
+        });
+      // Login End
+    }
   }
   return (
     <React.Fragment>
@@ -163,8 +172,8 @@ export default function SignIn(props) {
           </Button>
           <Typography style={{ marginTop: "15px" }}>
             Do you have an account?{" "}
-            <NavLink to="/register">
-              <Link style={{ fontSize: "17px" }}>Register.</Link>
+            <NavLink to="/register" style={{ textDecoration: "none" }}>
+              <Link style={{ fontSize: "17px" }}>Register</Link>
             </NavLink>
           </Typography>
         </Box>

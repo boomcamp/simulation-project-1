@@ -280,8 +280,8 @@ export default function Register(props) {
           </Button>
           <Typography style={{ marginTop: "15px" }}>
             Already have an account?{" "}
-            <NavLink to="/login">
-              <Link style={{ fontSize: "17px" }}>Log In.</Link>
+            <NavLink to="/login" style={{ textDecoration: "none" }}>
+              <Link style={{ fontSize: "17px" }}>Login</Link>
             </NavLink>
           </Typography>
         </Box>

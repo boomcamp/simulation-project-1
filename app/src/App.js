@@ -81,7 +81,7 @@ export default class App extends React.Component {
           position: toast.POSITION.TOP_CENTER
         });
       })
-      .catch(() => alert("Incorrect Email/Password!!"));
+      .catch(() => toast.error("Incorrect Email/Password!!"));
   };
 
   redirectHandler = () => {
@@ -94,9 +94,6 @@ export default class App extends React.Component {
 
   RegisterHandler = e => {
     e.preventDefault();
-    this.setState({
-      redirect: true
-    });
     const url = "http://localhost:3000/register";
     axios
       .post(url, {
@@ -109,8 +106,12 @@ export default class App extends React.Component {
         active: true
       })
       .then(() => {
+        this.setState({
+          redirect: true
+        });
         alert("Success!!");
-      });
+      })
+      .catch(() => toast.error("Email already exists!"));
   };
 
   handleLogout = () => {

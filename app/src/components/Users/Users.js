@@ -32,7 +32,7 @@ export default class Users extends React.Component {
           filtering: false
         },
         {
-          title: "Status",
+          title: "Active",
           field: "active",
           lookup: {
             true: "Active",

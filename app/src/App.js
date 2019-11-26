@@ -72,7 +72,8 @@ export default class App extends Component {
       validation: []
     });
   };
-  handleLogin = () => {
+  handleLogin = e => {
+    e.preventDefault();
     const Obj = {
       email: this.state.email,
       password: this.state.password
@@ -97,8 +98,8 @@ export default class App extends Component {
       : toast.error("Fill all the Blanks");
   };
 
-  handleSignUp = () => {
-    this.setState({ regSuccess: true });
+  handleSignUp = e => {
+    e.preventDefault();
     const Obj = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -111,6 +112,7 @@ export default class App extends Component {
     axios
       .post("http://localhost:3000/register", Obj)
       .then(() => {
+        this.setState({ regSuccess: true });
         toast.success("Account has been Successfully Added!");
       })
       .catch(() => {
@@ -121,9 +123,7 @@ export default class App extends Component {
   handleLogout = () => {
     localStorage.clear();
     this.setState({
-      accessToken: "",
-      email: "",
-      password: ""
+      accessToken: ""
     });
     toast.success("Successfully Logout!");
   };

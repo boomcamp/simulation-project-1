@@ -66,7 +66,7 @@ export default class Registration extends React.Component {
               </h3>
             </MDBRow>
           </div>
-          <form onSubmit={() => handleSignUp()}>
+          <form onSubmit={e => handleSignUp(e)}>
             <MDBCardBody className="mx-4 mt-4">
               <MDBRow>
                 <MDBCol md="6">

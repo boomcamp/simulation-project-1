@@ -67,13 +67,6 @@ export default function LoginPage(props) {
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
-                {/* <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="h6" className={classes.title}>
-                            Sign In
-                        </Typography>
-                    </Toolbar>
-                </AppBar> */}
                 <AppBar position="static" className={classes.bar}>
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
@@ -81,48 +74,49 @@ export default function LoginPage(props) {
                     </Typography>
                     </Toolbar>
                 </AppBar>
-                <CardContent className={classes.cardcontent}>
-                    <TextField
-                        required
-                        id="email"
-                        className={classes.textField}
-                        label="Email"
-                        margin="normal"
-                        variant="outlined"
-                        name="email"
-                        type="email"
-                        value={props.email}
-                        onChange={e => props.handleChange(e)}
-                    />
-                </CardContent>
-                <div className={classes.link}>
-                    <Tooltip title="You don't have permission to do this">
-                        <span>
-                            <Button disabled size="small" color="primary" >
-                                Forgot Email?
+                <form onSubmit={cont}>
+                    <CardContent className={classes.cardcontent}>
+                        <TextField
+                            required
+                            id="email"
+                            className={classes.textField}
+                            label="Email"
+                            margin="normal"
+                            variant="outlined"
+                            name="email"
+                            type="email"
+                            onChange={e => props.handleChange(e)}
+                        />
+                    </CardContent>
+                    <div className={classes.link}>
+                        <Tooltip title="You don't have permission to do this">
+                            <span>
+                                <Button disabled size="small" color="primary" >
+                                    Forgot Email?
                             </Button>
-                        </span>
-                    </Tooltip>
-                </div>
-                <CardContent className={classes.link2} >
-                    <CardActions>
-                        <Link to="/register">
-                            <Button
-                                size="small"
-                                color="primary"
-                            >
-                                Create an account
+                            </span>
+                        </Tooltip>
+                    </div>
+                    <CardContent className={classes.link2} >
+                        <CardActions>
+                            <Link to="/register">
+                                <Button
+                                    size="small"
+                                    color="primary"
+                                >
+                                    Create an account
                             </Button>
-                        </Link>
-                    </CardActions>
-                    <Button
-                        className={classes.next}
-                        variant="contained"
-                        color="primary"
-                        onClick={cont}>
-                        Next
+                            </Link>
+                        </CardActions>
+                        <Button
+                            className={classes.next}
+                            variant="contained"
+                            color="primary"
+                            type="submit">
+                            Next
                     </Button>
-                </CardContent>
+                    </CardContent>
+                </form>
             </Card>
             <Route path="/register" component={Register} />
         </div>

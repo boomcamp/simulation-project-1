@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import LoginPageUsername from './LoginPage/LoginPageUsername';
 import LoginPagePassword from './LoginPage/LoginPagePassword';
-import axios from 'axios'
+import axios from 'axios';
+
 
 export default class MediaCard extends Component {
     constructor(props) {
@@ -33,7 +34,6 @@ export default class MediaCard extends Component {
             ...this.state,
             data: { ...this.state.data, [e.target.name]: e.target.value }
         });
-        console.log(this.state)
     }
 
 
@@ -45,8 +45,6 @@ export default class MediaCard extends Component {
             data: this.state.data
         })
             .then(e => {
-                console.log("here", e)
-                console.log(this.props)
                 localStorage.setItem('token', e.data.accessToken)
                 this.props.history.push('/usermanager')
 

@@ -20,8 +20,10 @@ const useStyles = {
     logout: {
         color: "#fff"
     },
+    table: {
+        width: "100%"
+    }
 };
-
 
 class UserMan extends Component {
     constructor(props) {
@@ -45,7 +47,6 @@ class UserMan extends Component {
                     }
                 }
             ],
-            data: [],
             localStorage: localStorage.getItem('token'),
             users: []
         }
@@ -69,6 +70,9 @@ class UserMan extends Component {
         }
     }
 
+    handleRefresh = () => {
+
+    }
 
     logOut = (e) => {
         localStorage.clear();
@@ -90,7 +94,7 @@ class UserMan extends Component {
                     </Container>
                 </AppBar>
                 <MaterialTable
-                    maxWidth="md"
+                    className={classes.table}
                     title="Users"
                     columns={this.state.columns}
                     data={this.state.users}
@@ -118,6 +122,22 @@ class UserMan extends Component {
                                         });
                                     }
                                 }, 600);
+                                axios
+                                    .patch(`http://localhost:4000/users/${newData.id}`,
+                                        {
+                                            email: newData.email,
+                                            username: newData.username,
+                                            firstName: newData.firstName,
+                                            lastName: newData.lastName,
+                                            active: newData.active
+                                        },
+                                        {
+                                            headers: {
+                                                Authorization: `Bearer` + localStorage
+                                            }
+                                        }
+                                    )
+                                    .then(e => console.log(e))
                             }),
                         onRowDelete: oldData =>
                             new Promise(resolve => {

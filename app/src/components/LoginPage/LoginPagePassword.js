@@ -63,13 +63,6 @@ export default function LoginPage(props) {
     return (
         <div className={classes.root} >
             <Card className={classes.card}>
-                {/* <AppBar position="static">
-                    <Toolbar>
-                        <Typography variant="h6" className={classes.title}>
-                            Sign In
-                        </Typography>
-                    </Toolbar>
-                </AppBar> */}
                 <AppBar position="static" className={classes.bar}>
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
@@ -77,45 +70,47 @@ export default function LoginPage(props) {
                     </Typography>
                     </Toolbar>
                 </AppBar>
-                <CardContent className={classes.cardcontent}>
-                    <TextField
-                        required
-                        id="password"
-                        className={classes.textField}
-                        label="Password"
-                        margin="normal"
-                        variant="outlined"
-                        name="password"
-                        type="password"
-                        onChange={e => props.handleChange(e)}
-                    />
-                </CardContent>
-                <CardContent className={classes.link2}>
-                    <Tooltip title="You don't have permission to do this">
-                        <span>
-                            <Button disabled size="small" color="primary" className={classes.forgot}>
-                                Forgot Password?
+                <form onSubmit={props.handleLogin}>
+                    <CardContent className={classes.cardcontent}>
+                        <TextField
+                            required
+                            id="password"
+                            className={classes.textField}
+                            label="Password"
+                            margin="normal"
+                            variant="outlined"
+                            name="password"
+                            type="password"
+                            onChange={e => props.handleChange(e)}
+                        />
+                    </CardContent>
+                    <CardContent className={classes.link2}>
+                        <Tooltip title="You don't have permission to do this">
+                            <span>
+                                <Button disabled size="small" color="primary" className={classes.forgot}>
+                                    Forgot Password?
                                 </Button>
-                        </span>
-                    </Tooltip>
-                    <div className={classes.button}>
+                            </span>
+                        </Tooltip>
+                        <div className={classes.button}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.back}
+                                onClick={props.prevStep}>
+                                Back
+                        </Button>
+                        </div>
                         <Button
                             variant="contained"
                             color="primary"
-                            className={classes.back}
-                            onClick={props.prevStep}>
-                            Back
+                            className={classes.ok}
+                            type="submit"
+                        >
+                            OK
                         </Button>
-                    </div>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.ok}
-                        onClick={props.handleLogin}
-                    >
-                        OK
-                        </Button>
-                </CardContent>
+                    </CardContent>
+                </form>
             </Card>
         </div >
     )

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/json-server db.json -m ./node_modules/json-server-auth -r routes.json",
+    "start": "./node_modules/.bin/json-server db.json -m ./node_modules/json-server-auth -r routes.json -p 4001",
     "init:db": "./.bin/populateUsers.sh"
   },
   "repository": {

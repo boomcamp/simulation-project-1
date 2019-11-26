@@ -1,0 +1,68 @@
+body{
+  background-image: url('./images/bg2.jpeg');
+  background-size: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: 'Alata', sans-serif;
+
+}
+.App{
+  margin-top: 80px;
+  width: 1200px;
+  height: auto;
+  background-color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  border: 1px solid #fff;
+  box-shadow: 2px 1px 10px #333;
+  border-radius: 5px;
+}
+.imageRandom{
+  background-image: url('./images/bg2.jpeg');
+  background-size: 100%;
+  width: 45%;
+  height: 700px;
+  color:#fff;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 1.2em;
+}
+.imageRandom button{
+  padding: 10px; 
+  width: 100px;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  font-size: 1em;
+  color: #fff;
+  cursor: pointer;
+  outline: none
+}
+.form{
+  width: 55%;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.home{
+  height: auto;
+  background-color: #444444;
+  box-shadow: 2px 1px 10px #333;
+  color:#fff;
+  display: flex;
+  flex-flow: column wrap;
+}
+.title{
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+}
+.home button{
+  margin: 5px;
+  height: 40px;
+} 

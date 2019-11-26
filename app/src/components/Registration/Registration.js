@@ -34,7 +34,9 @@ export default class Registration extends React.Component {
   };
 
   validationEmail = val => {
-    var re = new RegExp(/^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/);
+    var re = new RegExp(
+      /^(([^<>()[\]\\,;:\s@"]+(\[^<>()\[\]\\,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
     return re.test(String(val).toLowerCase());
   };
 
@@ -186,7 +188,13 @@ export default class Registration extends React.Component {
               <div className="text-center mb-4 mt-5">
                 <MDBBtn
                   color="danger"
-                  className="btn-block z-depth-2"
+                  className={
+                    confirm === ""
+                      ? ""
+                      : confirm
+                      ? "btn-block z-depth-2"
+                      : "btn-block z-depth-2 disabled"
+                  }
                   type="submit"
                 >
                   Sign Up

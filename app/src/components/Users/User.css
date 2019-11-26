@@ -22,5 +22,20 @@
 }
 
 .MuiTableRow-root:hover {
-  background: #dedede !important;
+  background: rgb(223, 181, 181) !important;
+}
+
+tbody.MuiTableBody-root tr.MuiTableRow-root:first-of-type {
+  height: 10px;
+  position: absolute;
+  top: -15px;
+  right: 311px;
+}
+
+tbody.MuiTableBody-root tr.MuiTableRow-root:first-of-type:hover {
+  background-color: transparent !important;
+}
+
+div.MuiSelect-selectMenu {
+  width: 125px;
 }

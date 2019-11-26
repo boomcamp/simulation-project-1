@@ -21,6 +21,12 @@ export default class App extends Component {
     };
   }
 
+  componentDidMount = () => {
+    this.setState({
+      accessToken: localStorage.getItem("user")
+    });
+  };
+
   handleOnChange = (val, check) => {
     if (check === "confirm") {
       this.state.password === val
@@ -65,7 +71,6 @@ export default class App extends Component {
       confirm: "",
       validation: []
     });
-    console.log(this.state.regSuccess);
   };
   handleLogin = () => {
     const Obj = {
@@ -93,6 +98,7 @@ export default class App extends Component {
   };
 
   handleSignUp = () => {
+    this.setState({ regSuccess: true });
     const Obj = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -105,7 +111,6 @@ export default class App extends Component {
     axios
       .post("http://localhost:3000/register", Obj)
       .then(() => {
-        this.setState({ regSuccess: true });
         toast.success("Account has been Successfully Added!");
       })
       .catch(() => {

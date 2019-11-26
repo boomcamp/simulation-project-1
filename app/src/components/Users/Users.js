@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import "./User.css";
@@ -22,7 +23,8 @@ import {
 
 const Div = styled.div`
   width: 100%;
-  padding: 100px;
+  padding: 80px;
+  background-color: whitesmoke;
 `;
 
 class Users extends React.Component {
@@ -31,18 +33,38 @@ class Users extends React.Component {
     this.state = {
       isOpen: false,
       columns: [
-        { title: "First Name", field: "firstName" },
-        { title: "Last Name", field: "lastName" },
-        { title: "Username", field: "username" },
+        { title: "First Name", field: "firstName", filtering: false },
+        { title: "Last Name", field: "lastName", filtering: false },
+        { title: "Username", field: "username", filtering: false },
 
         {
           title: "Email Address",
-          field: "email"
+          field: "email",
+          filtering: false
         },
         {
-          title: "Status",
+          title: "Active",
           field: "active",
-          lookup: { true: "Active", false: "Inactive" }
+          lookup: {
+            true: "Active",
+            false: "Inactive"
+          },
+          render: rowData =>
+            rowData.active === true || rowData.active === "true" ? (
+              <div>
+                <FiberManualRecordIcon
+                  style={{ color: "green", width: "20px" }}
+                />
+                <span> Active</span>
+              </div>
+            ) : (
+              <div>
+                <FiberManualRecordIcon
+                  style={{ color: "red", width: "20px" }}
+                />
+                <span> Inactive</span>
+              </div>
+            )
         }
       ],
       data: []
@@ -95,7 +117,8 @@ class Users extends React.Component {
             data={this.state.data}
             options={{
               pageSizeOptions: [10, 15, 20],
-              pageSize: 10
+              pageSize: 10,
+              filtering: true
             }}
             editable={{
               onRowUpdate: (newData, oldData) =>
@@ -138,6 +161,13 @@ class Users extends React.Component {
                       return { ...prevState, data };
                     });
                   }, 600);
+                  axios
+                    .delete(`http://localhost:3000/users/${oldData.id}`, {
+                      headers: { Authorization: `Bearer ${accessToken}` }
+                    })
+                    .then(
+                      toast.success("Account has been Successfully Deleted!")
+                    );
                 })
             }}
           />

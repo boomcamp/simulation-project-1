@@ -50,6 +50,10 @@ const useStyles = makeStyles(theme => ({
     next: {
         marginRight: 25
     },
+    bar: {
+        background: "transparent",
+        color: "#000"
+    },
 }));
 
 export default function LoginPage(props) {
@@ -63,15 +67,23 @@ export default function LoginPage(props) {
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
-                <AppBar position="static">
+                {/* <AppBar position="static">
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
                             Sign In
                         </Typography>
                     </Toolbar>
+                </AppBar> */}
+                <AppBar position="static" className={classes.bar}>
+                    <Toolbar>
+                        <Typography variant="h6" className={classes.title}>
+                            Sign In
+                    </Typography>
+                    </Toolbar>
                 </AppBar>
                 <CardContent className={classes.cardcontent}>
                     <TextField
+                        required
                         id="email"
                         className={classes.textField}
                         label="Email"

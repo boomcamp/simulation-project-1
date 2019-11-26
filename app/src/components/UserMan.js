@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { AppBar, Container, Toolbar, Typography, Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles'
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 
@@ -8,7 +10,6 @@ const useStyles = {
     root: {
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         alignItems: "center",
         height: "100vh",
         flexGrow: 1,
@@ -19,9 +20,6 @@ const useStyles = {
     logout: {
         color: "#fff"
     },
-    table: {
-        background: "red"
-    }
 };
 
 
@@ -30,27 +28,45 @@ class UserMan extends Component {
         super(props);
         this.state = {
             columns: [
-                { title: 'Email', field: 'email' },
-                { title: 'User Name', field: 'username' },
                 { title: 'First Name', field: 'firstName' },
                 { title: 'Last Name', field: 'lastName' },
-                { title: 'Active', field: 'active' }
+                { title: 'User Name', field: 'username' },
+                { title: 'Email', field: 'email' },
+                {
+                    title: 'Active',
+                    field: 'active',
+                    lookup: {
+                        true: (
+                            <CheckRoundedIcon />
+                        ),
+                        false: (
+                            <CloseRoundedIcon />
+                        )
+                    }
+                }
             ],
-            data: [
-            ],
+            data: [],
+            localStorage: localStorage.getItem('token'),
+            users: []
         }
     }
 
     componentDidMount = () => {
-        axios({
-            method: 'get',
-            url: `http://localhost:4000/users`,
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-        })
-            .then(data => {
-                console.log(data)
+        if (localStorage) {
+            axios({
+                method: 'get',
+                url: `http://localhost:4000/users`,
+                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
             })
-            .catch(e => console.log(e.data))
+                .then(data => {
+                    this.setState({
+                        users: data.data
+                    })
+                })
+                .catch(e => console.log(e))
+        } else {
+            this.props.history.push("/login")
+        }
     }
 
 
@@ -64,7 +80,7 @@ class UserMan extends Component {
         return (
             <div className={classes.root}>
                 <AppBar position="static">
-                    <Container maxWidth="md">
+                    <Container maxWidth="lg">
                         <Toolbar>
                             <Typography variant="h6" className={classes.title}>
                                 User Management
@@ -74,16 +90,17 @@ class UserMan extends Component {
                     </Container>
                 </AppBar>
                 <MaterialTable
-                    title="User Manager"
+                    maxWidth="md"
+                    title="Users"
                     columns={this.state.columns}
-                    data={this.state.data}
+                    data={this.state.users}
                     editable={{
                         onRowAdd: newData =>
                             new Promise(resolve => {
                                 setTimeout(() => {
                                     resolve();
                                     this.setState(prevState => {
-                                        const data = [...prevState.data];
+                                        const data = [...prevState.users];
                                         data.push(newData);
                                         return { ...prevState, data };
                                     });
@@ -95,7 +112,7 @@ class UserMan extends Component {
                                     resolve();
                                     if (oldData) {
                                         this.setState(prevState => {
-                                            const data = [...prevState.data];
+                                            const data = [...prevState.users];
                                             data[data.indexOf(oldData)] = newData;
                                             return { ...prevState, data };
                                         });

@@ -12,7 +12,6 @@ export default class MediaCard extends Component {
                 password: ""
             },
             step: 1,
-            redirect: false
         }
         this.handleLogin = this.handleLogin.bind(this);
     }

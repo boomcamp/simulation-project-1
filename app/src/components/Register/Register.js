@@ -59,6 +59,14 @@ const useStyles = (theme => ({
     },
     errormsg: {
         color: "red",
+        fontSize: 12,
+    },
+    error50: {
+        display: "flex",
+        margin: "auto"
+    },
+    error100: {
+        display: "flex"
     }
 }));
 
@@ -72,16 +80,17 @@ class Register extends Component {
                 username: "",
                 firstName: "",
                 lastName: "",
+                active: true
             },
             dataErr: {
-                password2: "",
                 emailerr: "",
                 passworderr: "",
                 password2err: "",
                 usernameerr: "",
                 firstNameerr: "",
                 lastNameerr: ""
-            }
+            },
+            password2: ""
         }
     }
 
@@ -103,10 +112,12 @@ class Register extends Component {
     }
 
     handleChangeEer = e => {
-        this.setState({
-            ...this.state,
-            dataErr: { [e.target.name]: e.target.value }
-        });
+        if (e.target.value !== this.state.data.password) {
+            this.setState({
+                ...this.state,
+                dataErr: { [e.target.name]: e.target.value }
+            });
+        }
     }
 
     validate = (getName, getValue) => {
@@ -115,7 +126,7 @@ class Register extends Component {
         if (getName === 'firstName') getValue.length > 1 ? data = "" : data = "firstname should be more than 2 character*"
         if (getName === 'lastName') getValue.length > 1 ? data = "" : data = "lastname should be more than 2 character*"
         if (getName === 'username') getValue.length > 5 ? data = "" : data = "username should be more than 5 character*"
-        if (getName === 'password') getValue.length < 8 ? data = "password must have a minimum of 8 characters*"
+        if (getName === 'password') getValue.length < 6 ? data = "password must have a minimum of 6 characters*"
             : getValue.match(passregex) ? data = "password must contain 1uppercase, a number, & 1 special case character*" : data = "";
 
         return data
@@ -141,7 +152,7 @@ class Register extends Component {
         return (
             <div className={classes.root} >
                 <AppBar position="static" className={classes.bar}>
-                    <Container maxWidth="md">
+                    <Container maxWidth="lg">
                         <Toolbar>
                             <Typography variant="h6" className={classes.title}>
                                 Register
@@ -185,8 +196,10 @@ class Register extends Component {
                                         onChange={e => this.handleChange(e)}
                                     />
                                 </div>
-                                <div className={classes.errormsg}>{this.state.dataErr.firstNameerr}</div>
-                                <div className={classes.errormsg}>{this.state.dataErr.lastNameerr}</div>
+                                <div className={classes.error50}>
+                                    <div className={classes.errormsg}>{this.state.dataErr.firstNameerr}</div>
+                                    <div className={classes.errormsg}>{this.state.dataErr.lastNameerr}</div>
+                                </div>
                                 <TextField
                                     required
                                     id="username"
@@ -212,34 +225,39 @@ class Register extends Component {
                                     value={email}
                                     onChange={e => this.handleChange(e)}
                                 />
-                                <div className={classes.errormsg}>{this.state.dataErr.emailerr}</div>
-                                <div className={classes.name}>
-                                    <TextField
-                                        required
-                                        id="password"
-                                        className={classes.textField}
-                                        label="Password"
-                                        margin="normal"
-                                        variant="outlined"
-                                        name="password"
-                                        type="password"
-                                        value={password}
-                                        onChange={e => this.handleChange(e)}
-                                    />
-                                    <TextField
-                                        id="password2"
-                                        className={classes.textField}
-                                        label="Retype Password"
-                                        margin="normal"
-                                        variant="outlined"
-                                        name="password2"
-                                        type="password"
-                                        value={password2}
-                                        onChange={e => this.handleChangeEer(e)}
-                                    />
+                                <div>
+                                    <div className={classes.errormsg}>{this.state.dataErr.emailerr}</div>
+                                    <div className={classes.name}>
+
+                                        <TextField
+                                            required
+                                            id="password"
+                                            className={classes.textField}
+                                            label="Password"
+                                            margin="normal"
+                                            variant="outlined"
+                                            name="password"
+                                            type="password"
+                                            value={password}
+                                            onChange={e => this.handleChange(e)}
+                                        />
+                                        <TextField
+                                            id="password2"
+                                            className={classes.textField}
+                                            label="Retype Password"
+                                            margin="normal"
+                                            variant="outlined"
+                                            name="password2"
+                                            type="password"
+                                            value={password2}
+                                            onChange={e => this.handleChangeEer(e)}
+                                        />
+                                    </div>
                                 </div>
-                                <div className={classes.errormsg}>{this.state.dataErr.passworderr}</div>
-                                <div className={classes.errormsg}>{this.state.dataErr.password2err}</div>
+                                <div className={classes.error50}>
+                                    <div className={classes.errormsg}>{this.state.dataErr.passworderr}</div>
+                                    <div className={classes.errormsg}>{this.state.dataErr.password2err}</div>
+                                </div>
                                 <div className={classes.buttons}>
                                     <Link to="/">
                                         <Button

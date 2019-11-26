@@ -6,6 +6,7 @@ import RemoveRoundedIcon from '@material-ui/icons/RemoveRounded';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 
+
 const useStyles = {
     root: {
         display: "flex",
@@ -50,7 +51,7 @@ class UserMan extends Component {
     }
 
     componentDidMount = () => {
-        if (this.state.localStorage) {
+        if (localStorage.getItem("token")) {
             axios({
                 method: 'get',
                 url: `http://localhost:4000/users`,
@@ -91,7 +92,11 @@ class UserMan extends Component {
                     title="Users"
                     columns={this.state.columns}
                     data={this.state.users}
-                    options={{ filtering: true }}
+                    options={{ 
+                        filtering: true, 
+                        pageSizeOptions: [5,10], 
+                        draggable: false,
+                    }}
                     editable={{
                         onRowUpdate: (newData, oldData) =>
                             new Promise(resolve => {
@@ -123,7 +128,7 @@ class UserMan extends Component {
                                 })
                                     .then(e => console.log(e.data))
                                     .catch(err => console.log(err))
-                            })
+                            }),
                     }}
                 />
             </div >

@@ -15,7 +15,8 @@ const useStyles = (theme => ({
         flexGrow: 1,
     },
     subtitle: {
-        color: "red"
+        color: "red",
+        fontSize: 12
     },
     textField: {
         marginLeft: theme.spacing(1),
@@ -72,6 +73,9 @@ const useStyles = (theme => ({
     error50margin: {
         display: "flex",
         marginLeft: "16%"
+    },
+    black: {
+        color: "#2e2e2e"
     }
 }));
 
@@ -110,16 +114,6 @@ class Register extends Component {
                 [`${e.target.name}err`]: this.validate(e.target.name, e.target.value)
             }
         });
-        console.log(this.state.data)
-    }
-
-    handleChangeEer = e => {
-        if (e.target.value !== this.state.data.password) {
-            this.setState({
-                ...this.state,
-                dataErr: { [e.target.name]: e.target.value }
-            });
-        }
     }
 
     validate = (getName, getValue) => {
@@ -127,9 +121,14 @@ class Register extends Component {
         let data = '';
         if (getName === 'firstName') getValue.length > 1 ? data = "" : data = "firstname should be more than 2 character*"
         if (getName === 'lastName') getValue.length > 1 ? data = "" : data = "lastname should be more than 2 character*"
-        if (getName === 'username') getValue.length > 5 ? data = "" : data = "username should be more than 5 character*"
-        if (getName === 'password') getValue.length < 6 ? data = "password must have a minimum of 6 characters*"
+        if (getName === 'username') getValue.length > 5 ? data = "" : data = "username should be more than 5 character and consists of 1 number*"
+        if (getName === 'password') getValue.length < 6 ? data = "password must have a minimum of 6 characters*" 
             : getValue.match(passregex) ? data = "password must contain 1uppercase, a number, & 1 special case character*" : data = "";
+        // if (!passregex.test(this.state.data.password)) {
+        //     this.setState({
+        //         dataErr: { passworderr: "password must contain 1 number" }
+        //     })
+        // }
 
         return data
     }
@@ -169,8 +168,8 @@ class Register extends Component {
                     <Card className={classes.card}>
                         <CardContent className={classes.cardcontent}>
                             <span className={classes.subtitle}>
-                                * Required Fields
-                    </span>
+                                *<span className={classes.black}>required Fields</span>
+                            </span>
                             <form autoComplete="off" onSubmit={this.handleSubmit}>
                                 <div className={classes.name}>
                                     <TextField
@@ -246,14 +245,15 @@ class Register extends Component {
                                         onChange={e => this.handleChange(e)}
                                     />
                                     <TextField
+                                        required
                                         id="password2"
                                         className={classes.textField}
-                                        label="Retype Password"
+                                        label="Password"
                                         margin="normal"
                                         variant="outlined"
                                         name="password2"
                                         type="password"
-                                        value={password2}
+                                        value={password}
                                         onChange={e => this.handleChange(e)}
                                     />
                                 </div>

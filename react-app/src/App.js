@@ -11,7 +11,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {redirect ? <Redirect to="/manage" /> : null}
+        {redirect || localStorage.getItem("Token") ? (
+          <Redirect to="/manage" />
+        ) : null}
+
         <Switch>
           <Route
             exact
@@ -23,7 +26,8 @@ function App() {
             render={props => <SignIn setRedirect={setRedirect} />}
           />
           <Route path="/register" component={Register} />
-          <Route path="/manage-users" component={ManageUser} />
+
+          <Route path="/manage" component={ManageUser} />
         </Switch>
       </BrowserRouter>
     </div>

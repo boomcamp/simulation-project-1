@@ -201,7 +201,7 @@ export default function Register(props) {
   return (
     <React.Fragment>
       <AppBar />
-      <Container maxWidth="fixed" className={classes.container}>
+      <Container className={classes.container}>
         {" "}
         <AccountCircleIcon color="primary" className={classes.icon} />
         <Typography className={classes.title}>Register</Typography>
@@ -284,7 +284,7 @@ export default function Register(props) {
           <Typography style={{ marginTop: "15px" }}>
             Already have an account?{" "}
             <NavLink to="/login" style={{ textDecoration: "none" }}>
-              <Link style={{ fontSize: "17px" }}>Login</Link>
+              Login
             </NavLink>
           </Typography>
         </Box>

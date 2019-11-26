@@ -173,7 +173,7 @@ export default function SignIn(props) {
           <Typography style={{ marginTop: "15px" }}>
             Do you have an account?{" "}
             <NavLink to="/register" style={{ textDecoration: "none" }}>
-              <Link style={{ fontSize: "17px" }}>Register</Link>
+              Register
             </NavLink>
           </Typography>
         </Box>

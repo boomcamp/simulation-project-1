@@ -99,7 +99,6 @@ class Register extends Component {
                 firstNameerr: "",
                 lastNameerr: ""
             },
-            password2: ""
         }
     }
 
@@ -124,11 +123,6 @@ class Register extends Component {
         if (getName === 'username') getValue.length > 5 ? data = "" : data = "username should be more than 5 character and consists of 1 number*"
         if (getName === 'password') getValue.length < 6 ? data = "password must have a minimum of 6 characters*" 
             : getValue.match(passregex) ? data = "password must contain 1uppercase, a number, & 1 special case character*" : data = "";
-        // if (!passregex.test(this.state.data.password)) {
-        //     this.setState({
-        //         dataErr: { passworderr: "password must contain 1 number" }
-        //     })
-        // }
 
         return data
     }
@@ -149,7 +143,7 @@ class Register extends Component {
 
     render() {
         const { classes } = this.props;
-        const { email, password, password2, username, firstname, lastname } = this.state;
+        const { email, password, username, firstname, lastname } = this.state;
         return (
             <div className={classes.root} >
                 <AppBar position="static" className={classes.bar}>

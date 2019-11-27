@@ -1,11 +1,9 @@
 import React, { useState } from "react"
 import axios from "axios"
 import {Link} from "react-router-dom"
-import * as ls  from 'local-storage';
 import Button from "@material-ui/core/Button"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import TextField from "@material-ui/core/TextField"
-// import Link from "@material-ui/core/Link"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
@@ -66,7 +64,7 @@ export default function Registration(props) {
   })
   const [user, setUser] = useState({
     users: [],
-    userName: "",
+    username: "",
     email: "",
     firstName: "",
     lastName: "",
@@ -75,10 +73,6 @@ export default function Registration(props) {
     checkPass: "",
     required: "",
   })
-
-  React.useEffect(()=>{
-    console.log(user)
-  },[user])
 
   function requiredData(e) {
     if (e.target.value.length === 0) {
@@ -116,7 +110,8 @@ export default function Registration(props) {
     }
   }
  
-  function signUp() {
+  function signUp(e) {
+    e.preventDefault();
     axios
       .post(`http://localhost:4000/register`, {
         email: user.email,
@@ -125,8 +120,7 @@ export default function Registration(props) {
         password: user.password,
         username: user.userName,  
         active: true
-      }).then(results => {
-        ls.set('token', results.data.accessToken)
+      }).then(() => {
         props.history.push("/")
       })
 
@@ -138,7 +132,7 @@ export default function Registration(props) {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form onSubmit={signUp} className={classes.form} noValidate>
+        <form  onSubmit={(e)=>signUp(e)} className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField

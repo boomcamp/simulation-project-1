@@ -106,7 +106,6 @@ export default function LoginPage(props) {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Link to="/manageuser">
           <Button
             onClick={ () =>login(user)}
             fullWidth
@@ -116,7 +115,6 @@ export default function LoginPage(props) {
           >
             Sign In
           </Button>
-          </Link>
           <Grid container>
             <Grid item>
               <Link to="/registration">

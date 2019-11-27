@@ -62,9 +62,10 @@ export default function Registration(props) {
       required: false
     }
   })
+
   const [user, setUser] = useState({
     users: [],
-    username: "",
+    userName: "",
     email: "",
     firstName: "",
     lastName: "",
@@ -73,6 +74,11 @@ export default function Registration(props) {
     checkPass: "",
     required: "",
   })
+
+
+  React.useEffect(()=>{
+    console.log(user)
+  },[user])
 
   function requiredData(e) {
     if (e.target.value.length === 0) {
@@ -120,8 +126,16 @@ export default function Registration(props) {
         password: user.password,
         username: user.userName,  
         active: true
-      }).then(() => {
+      })
+      .then(() => alert("Successfully Registered"))
+      .then(() => {
         props.history.push("/")
+      }).catch(error => {
+        try {
+          alert(error.response.data);
+        } catch{
+          console.log(error);
+        }
       })
 
   }
@@ -205,9 +219,9 @@ export default function Registration(props) {
                 onBlur={e => requiredData(e)} 
                 error={err.userName.required}
                 helperText={!err.userName.required  ? ''  : "Required to fill out"}
-                value={user.username}
+                value={user.userName}
                 onChange={e => {
-                  setUser({ ...user, username: e.target.value })
+                  setUser({ ...user, userName: e.target.value })
                   requiredData(e)
                 }}
               />
